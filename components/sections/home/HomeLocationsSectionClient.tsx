@@ -113,21 +113,21 @@ export function HomeLocationsSectionClient({
   );
 
   return (
-    <section id="locations" className="bg-[#faf9f5] px-4 py-24">
+    <section id="locations" className="bg-[#faf9f5] px-4 py-24 max-[1024px]:py-18 max-[640px]:px-3 max-[640px]:py-14">
       <div className="mx-auto max-w-[1200px]">
         <div className="text-center">
-          <p className="text-[14px] font-semibold tracking-[0.14em] text-[#9e7646]">
+          <p className="text-[14px] font-semibold tracking-[0.14em] text-[#9e7646] max-[640px]:text-[12px] max-[640px]:tracking-[0.12em]">
             NORA STAY LOCATIONS
           </p>
-          <h2 className="mt-4 text-[36px] font-bold tracking-[-0.05em] text-[#2d2926]">
+          <h2 className="mt-4 text-[36px] font-bold tracking-[-0.05em] text-[#2d2926] max-[1024px]:text-[32px] max-[640px]:text-[26px]">
             {messages.sectionTitle}
           </h2>
-          <p className="mt-4 text-[14px] leading-[1.8] text-gray-500">
+          <p className="mt-4 text-[14px] leading-[1.8] text-gray-500 max-[640px]:text-[13px]">
             {messages.sectionDescription}
           </p>
         </div>
 
-        <div className="mx-auto mt-18 flex max-w-[960px] flex-wrap items-start justify-center gap-x-12 gap-y-6">
+        <div className="mx-auto mt-18 flex max-w-[960px] flex-wrap items-start justify-center gap-x-12 gap-y-6 max-[1024px]:mt-14 max-[1024px]:gap-x-9 max-[640px]:mt-10 max-[640px]:gap-x-6 max-[640px]:gap-y-5">
           {regions.map((region) => {
             const isActive = activeRegion === region.label;
             const isAvailable = region.count > 0;
@@ -138,7 +138,7 @@ export function HomeLocationsSectionClient({
                 key={region.label}
                 type="button"
                 onClick={() => setSelectedRegion(region.label)}
-                className="group flex w-[62px] cursor-pointer flex-col items-center text-center transition-opacity duration-200"
+                className="group flex w-[62px] cursor-pointer flex-col items-center text-center transition-opacity duration-200 max-[640px]:w-[58px]"
               >
                 <Image
                   src={region.icon}
@@ -153,7 +153,7 @@ export function HomeLocationsSectionClient({
 
                 <span
                   className={[
-                    "mt-3 inline-flex items-center gap-1 text-[14px] font-semibold",
+                    "mt-3 inline-flex items-center gap-1 text-[14px] font-semibold max-[640px]:mt-2 max-[640px]:text-[12px]",
                     isActive
                       ? "text-[#9e7646]"
                       : isAvailable
@@ -187,7 +187,7 @@ export function HomeLocationsSectionClient({
           })}
         </div>
 
-        <div className="mx-auto mt-16 flex max-w-[900px] flex-col gap-8">
+        <div className="mx-auto mt-16 flex max-w-[900px] flex-col gap-8 max-[1024px]:mt-14 max-[1024px]:gap-6 max-[640px]:mt-10 max-[640px]:gap-5">
           {filteredBranches.map((branch) => {
             const branchItem = branchItems.find((item) => item.id === branch.id);
 
@@ -198,24 +198,24 @@ export function HomeLocationsSectionClient({
             return (
             <div
               key={branch.id}
-              className="overflow-hidden rounded-[28px] border border-[#ece7df] bg-white shadow-sm"
+              className="overflow-hidden rounded-[28px] border border-[#ece7df] bg-white shadow-sm max-[640px]:rounded-[22px]"
             >
-              <div className="grid grid-cols-2">
-                <div className="relative min-h-[416px]">
+              <div className="grid grid-cols-2 max-[1024px]:grid-cols-1">
+                <div className="relative min-h-[416px] max-[1024px]:min-h-[340px] max-[640px]:min-h-[250px]">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={resolveBranchImage(branch.images[0]?.url)}
                     alt={getBranchDisplayNameWithTranslations(branchItem, locale, translations)}
                     className="absolute inset-0 h-full w-full object-cover"
                   />
-                  <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1 text-[10px] font-semibold text-[#9e7646] shadow-sm">
+                  <span className="absolute left-5 top-5 rounded-full bg-white/95 px-3 py-1 text-[10px] font-semibold text-[#9e7646] shadow-sm max-[640px]:left-4 max-[640px]:top-4 max-[640px]:text-[9px]">
                     {getLocalizedHotelRegionLabel(locale, branch.regionLabel)} {messages.branchSuffix}
                   </span>
                 </div>
 
-                <div className="flex min-h-[416px] min-w-0 flex-col px-8 py-6">
+                <div className="flex min-h-[416px] min-w-0 flex-col px-8 py-6 max-[1024px]:min-h-0 max-[1024px]:px-7 max-[1024px]:py-7 max-[640px]:px-5 max-[640px]:py-5">
                   <div className="flex flex-wrap items-center gap-3">
-                    <h3 className="text-[20px] font-bold tracking-[-0.04em] text-[#1e2a44]">
+                    <h3 className="text-[20px] font-bold tracking-[-0.04em] text-[#1e2a44] max-[640px]:text-[18px]">
                       {getBranchDisplayNameWithTranslations(branchItem, locale, translations)}
                     </h3>
                     <span
@@ -230,11 +230,11 @@ export function HomeLocationsSectionClient({
                     </span>
                   </div>
 
-                  <p className="mt-3 text-[14px] font-medium leading-[1.7] text-gray-500">
+                  <p className="mt-3 text-[14px] font-medium leading-[1.7] text-gray-500 max-[640px]:text-[13px]">
                     {getBranchDisplayAddressWithTranslations(branchItem, locale, translations)}
                   </p>
 
-                  <p className="mt-4 break-keep text-[12px] leading-relaxed tracking-tighter text-gray-500">
+                  <p className="mt-4 break-keep text-[12px] leading-relaxed tracking-tighter text-gray-500 max-[640px]:text-[11px]">
                     {getBranchDisplayDescriptionWithTranslations(branchItem, locale, translations)}
                   </p>
 
@@ -249,7 +249,7 @@ export function HomeLocationsSectionClient({
                     ))}
                   </div>
 
-                  <div className="mt-auto flex flex-wrap gap-3 pt-8">
+                  <div className="mt-auto flex flex-wrap gap-3 pt-8 max-[640px]:gap-2.5 max-[640px]:pt-6">
                     {branch.isFeatured ? (
                       <>
                         <Link
@@ -293,7 +293,7 @@ export function HomeLocationsSectionClient({
           })}
         </div>
 
-        <p className="mt-14 text-center text-[12px] text-gray-400">{messages.footer}</p>
+        <p className="mt-14 text-center text-[12px] text-gray-400 max-[640px]:mt-10 max-[640px]:text-[11px]">{messages.footer}</p>
       </div>
       {preparingBranch ? (
         <BranchPreparingModal

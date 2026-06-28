@@ -63,33 +63,35 @@ export function HomeHeroSection({ bookingUrl, locale, translations }: HomeHeroSe
   };
 
   return (
-    <section className="bg-[#faf9f5] pt-6">
+    <section className="bg-[#faf9f5] px-4 pt-6 max-[640px]:px-3">
       <div
-        className="relative mx-auto aspect-[16/9.5] max-w-[1200px] overflow-hidden rounded-[32px] border border-black/5 bg-cover bg-center bg-no-repeat shadow-lg"
+        className="relative mx-auto aspect-[16/9.5] max-w-[1200px] overflow-hidden rounded-[32px] border border-black/5 bg-cover bg-center bg-no-repeat shadow-lg max-[1024px]:aspect-[16/11] max-[768px]:aspect-[4/5] max-[640px]:rounded-[24px]"
         style={{ backgroundImage: "url(/images/section-images/chat_2_0ca9a92d.png)" }}
       >
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/40 via-black/10 to-transparent max-[768px]:bg-gradient-to-t max-[768px]:from-black/65 max-[768px]:via-black/20 max-[768px]:to-transparent" />
 
-        <div className="absolute inset-0 flex flex-col justify-between p-16 text-white">
-          <div className="flex gap-2">
-            <span className="rounded-full bg-[#8b6f47] px-3 py-1 text-[10px] font-bold tracking-wider text-white shadow-sm">
+        <div className="absolute inset-0 flex flex-col justify-between p-16 text-white max-[1024px]:p-10 max-[768px]:p-8 max-[640px]:p-5">
+          <div className="flex flex-wrap gap-2">
+            <span className="rounded-full bg-[#8b6f47] px-3 py-1 text-[10px] font-bold tracking-wider text-white shadow-sm max-[640px]:px-2.5 max-[640px]:text-[9px]">
               {hero.primaryChip}
             </span>
-            <span className="rounded-full bg-white/20 px-3 py-1 text-[10px] font-semibold tracking-wide text-white backdrop-blur-md">
+            <span className="rounded-full bg-white/20 px-3 py-1 text-[10px] font-semibold tracking-wide text-white backdrop-blur-md max-[640px]:px-2.5 max-[640px]:text-[9px]">
               {hero.secondaryChip}
             </span>
           </div>
 
-          <div className="my-auto max-w-xl space-y-3">
-            <p className="text-sm font-light tracking-wide text-white/90">{hero.eyebrow}</p>
+          <div className="my-auto max-w-xl space-y-3 max-[768px]:max-w-[88%] max-[640px]:max-w-full max-[640px]:space-y-2.5">
+            <p className="text-sm font-light tracking-wide text-white/90 max-[640px]:text-[11px]">
+              {hero.eyebrow}
+            </p>
 
             <h1
-              className={`${poppins.className} whitespace-pre-line text-6xl font-[900] leading-[1.05] tracking-tight drop-shadow-sm`}
+              className={`${poppins.className} whitespace-pre-line text-6xl font-[900] leading-[1.05] tracking-tight drop-shadow-sm max-[1024px]:text-5xl max-[768px]:text-[42px] max-[640px]:text-[30px] max-[640px]:leading-[1.12]`}
             >
               {hero.title.join("\n")}
             </h1>
 
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#e5d8cd]">
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-[#e5d8cd] max-[640px]:text-[10px] max-[640px]:tracking-[0.18em]">
               {hero.meta}
             </p>
           </div>
@@ -99,7 +101,7 @@ export function HomeHeroSection({ bookingUrl, locale, translations }: HomeHeroSe
               href={bookingUrl}
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-xs font-bold text-[#22232a] shadow-md transition-all duration-150 hover:bg-[#8b6f47] hover:text-white hover:shadow-lg active:scale-95"
+              className="group inline-flex items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-xs font-bold text-[#22232a] shadow-md transition-all duration-150 hover:bg-[#8b6f47] hover:text-white hover:shadow-lg active:scale-95 max-[640px]:px-5 max-[640px]:py-2.5 max-[640px]:text-[11px]"
             >
               <span className="text-[#ff2056] transition-colors group-hover:text-white">
                 <AirbnbIcon />

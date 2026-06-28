@@ -29,9 +29,9 @@ export function ExperienceConceptHotelsSection({
       : categories.filter((category) => category.id === selectedCategoryId);
 
   return (
-    <section id="experience-all" className="bg-[#f8f5ef] px-8 py-[56px]">
+    <section id="experience-all" className="bg-[#f8f5ef] px-8 py-[56px] max-[1024px]:px-6 max-[640px]:px-4 max-[640px]:py-12">
       <div
-        className={["mx-auto max-w-[1200px] space-y-16", contentClassName ?? ""].join(" ").trim()}
+        className={["mx-auto max-w-[1200px] space-y-16 max-[1024px]:space-y-14 max-[640px]:space-y-12", contentClassName ?? ""].join(" ").trim()}
       >
         {visibleCategories.map((category) => {
           const categoryItems = items.filter(
@@ -49,15 +49,15 @@ export function ExperienceConceptHotelsSection({
                 className="animate-[experience-category-rise_700ms_cubic-bezier(0.22,1,0.36,1)] will-change-[opacity,transform]"
               >
                 <div className="flex items-start gap-3">
-                  <span className="text-[30px] font-extrabold leading-none tracking-[-0.04em] text-[#f1d9ab]">
+                  <span className="text-[30px] font-extrabold leading-none tracking-[-0.04em] text-[#f1d9ab] max-[640px]:text-[24px]">
                     {String(category.sortOrder).padStart(2, "0")}
                   </span>
-                  <span className="pt-[10px] text-[12px] font-bold tracking-[-0.03em] text-[#a9783f]">
+                  <span className="pt-[10px] text-[12px] font-bold tracking-[-0.03em] text-[#a9783f] max-[640px]:pt-[7px] max-[640px]:text-[11px]">
                     {translateDictionaryText(locale, translations, category.titleKo, category.titleEn)}
                   </span>
                 </div>
 
-                <p className="mt-5 text-[20px] font-medium tracking-[-0.05em] text-[#6f8095]">
+                <p className="mt-5 text-[20px] font-medium tracking-[-0.05em] text-[#6f8095] max-[640px]:mt-4 max-[640px]:text-[17px]">
                   {translateDictionaryText(
                     locale,
                     translations,
@@ -66,7 +66,7 @@ export function ExperienceConceptHotelsSection({
                   )}
                 </p>
 
-                <h2 className="mt-3 text-[30px] font-extrabold leading-[1.28] tracking-[-0.02em] text-[#152033]">
+                <h2 className="mt-3 text-[30px] font-extrabold leading-[1.28] tracking-[-0.02em] text-[#152033] max-[1024px]:text-[27px] max-[640px]:text-[22px]">
                   {translateDictionaryText(
                     locale,
                     translations,
@@ -77,13 +77,13 @@ export function ExperienceConceptHotelsSection({
 
                 <div className="mt-8 h-px w-full bg-[#ece6dd]" />
 
-                <div className="mt-10 grid min-h-[420px] grid-cols-3 items-start gap-10">
+                <div className="mt-10 grid min-h-[420px] grid-cols-3 items-start gap-10 max-[1024px]:grid-cols-2 max-[1024px]:gap-7 max-[640px]:grid-cols-1 max-[640px]:gap-5">
                   {categoryItems.map((card) => (
                     <article
                       key={card.id}
-                      className="overflow-hidden rounded-[24px] border border-[#eee8de] bg-white shadow-[0_10px_30px_rgba(17,24,39,0.03)]"
+                      className="overflow-hidden rounded-[24px] border border-[#eee8de] bg-white shadow-[0_10px_30px_rgba(17,24,39,0.03)] max-[640px]:rounded-[20px]"
                     >
-                      <div className="relative h-[242px] w-full overflow-hidden">
+                      <div className="relative h-[242px] w-full overflow-hidden max-[640px]:h-[220px]">
                         <Image
                           src={card.imageUrl}
                           alt={translateDictionaryText(locale, translations, card.titleKo, card.titleEn)}
@@ -93,11 +93,11 @@ export function ExperienceConceptHotelsSection({
                         />
                       </div>
 
-                      <div className="px-6 pb-6 pt-5">
-                        <h3 className="text-[18px] font-extrabold tracking-[-0.05em] text-[#152033]">
+                      <div className="px-6 pb-6 pt-5 max-[640px]:px-5 max-[640px]:pb-5 max-[640px]:pt-4">
+                        <h3 className="text-[18px] font-extrabold tracking-[-0.05em] text-[#152033] max-[640px]:text-[16px]">
                           {translateDictionaryText(locale, translations, card.titleKo, card.titleEn)}
                         </h3>
-                        <p className="mt-5 text-[14px] leading-[1.6] tracking-[-0.04em] text-[#6a788a]">
+                        <p className="mt-5 text-[14px] leading-[1.6] tracking-[-0.04em] text-[#6a788a] max-[640px]:mt-4 max-[640px]:text-[13px]">
                           {translateDictionaryText(
                             locale,
                             translations,

@@ -35,18 +35,18 @@ export function HomeAboutSection({ locale, translations }: HomeAboutSectionProps
   };
 
   return (
-    <section className="bg-[#fff] px-4 py-44">
-      <div className="mx-auto grid max-w-[1200px] grid-cols-[460px_600px] items-center justify-between">
-        <div className="space-y-6">
-          <span className="block text-sm font-semibold uppercase tracking-[0.24em] text-[#8B6F47]">
+    <section className="bg-[#fff] px-4 py-44 max-[1024px]:py-28 max-[640px]:px-5 max-[640px]:py-20">
+      <div className="mx-auto grid max-w-[1200px] grid-cols-[460px_600px] items-center justify-between gap-16 max-[1024px]:grid-cols-1 max-[1024px]:gap-12">
+        <div className="space-y-6 max-[640px]:space-y-5">
+          <span className="block text-sm font-semibold uppercase tracking-[0.24em] text-[#8B6F47] max-[640px]:text-[12px] max-[640px]:tracking-[0.18em]">
             {about.eyebrow}
           </span>
 
-          <div className="space-y-4">
-            <h2 className="whitespace-pre-line text-[32px] font-bold leading-[1.35] tracking-[-0.04em] text-[#111827]">
+          <div className="space-y-4 max-[640px]:space-y-3">
+            <h2 className="whitespace-pre-line text-[32px] font-bold leading-[1.35] tracking-[-0.04em] text-[#111827] max-[1024px]:text-[30px] max-[640px]:text-[24px]">
               {about.title}
             </h2>
-            <p className="whitespace-nowrap text-sm leading-[1.8] text-[#6b7280]">
+            <p className="text-sm leading-[1.8] text-[#6b7280] max-[640px]:text-[13px]">
               {about.description}
             </p>
           </div>
@@ -62,7 +62,7 @@ export function HomeAboutSection({ locale, translations }: HomeAboutSectionProps
           </div>
         </div>
 
-        <div className="group relative aspect-[1.08/1] w-full overflow-hidden rounded-[28px] shadow-[0_16px_40px_rgba(17,24,39,0.10)]">
+        <div className="group relative aspect-[1.08/1] w-full overflow-hidden rounded-[28px] shadow-[0_16px_40px_rgba(17,24,39,0.10)] max-[1024px]:max-w-[760px] max-[640px]:aspect-[1/1.06] max-[640px]:rounded-[22px]">
           <Image
             src="/images/section-images/living_room_26132072.jpg"
             alt="Nora Stay living room terrace"

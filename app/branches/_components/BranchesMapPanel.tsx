@@ -1,6 +1,6 @@
 "use client";
 
-import { Crosshair, Minus, Plus } from "lucide-react";
+import { ChevronLeft, ChevronRight, Crosshair, Minus, Plus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
 import type { BranchItem, BranchTag } from "@/app/branches/_components/branches.data";
@@ -152,6 +152,7 @@ export function BranchesMapPanel({
     }),
   };
   const mapElementRef = useRef<HTMLDivElement | null>(null);
+  const tagScrollRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<unknown>(null);
   const markersRef = useRef<Map<string, unknown>>(new Map());
   const [isScriptReady, setIsScriptReady] = useState(false);
@@ -240,6 +241,13 @@ export function BranchesMapPanel({
     map.setZoom(currentZoom + step);
   }
 
+  function scrollTagsBy(offset: number) {
+    tagScrollRef.current?.scrollBy({
+      left: offset,
+      behavior: "smooth",
+    });
+  }
+
   return (
     <div className="relative h-full w-full bg-[#f7f3ec]">
       {NAVER_MAP_CLIENT_ID ? (
@@ -255,48 +263,73 @@ export function BranchesMapPanel({
 
       <div ref={mapElementRef} className="h-full w-full" />
 
-      <div className="pointer-events-none absolute left-8 right-6 top-6 z-10 overflow-x-auto">
-        <div className="flex min-w-max items-center gap-3">
-          {mapFilterTags.map((tag) => {
-            const isActive = activeTags.includes(tag);
+      <div className="pointer-events-none absolute left-8 right-6 top-6 z-10 max-[1279px]:left-3 max-[1279px]:right-3 max-[1279px]:top-3">
+        <div className="flex items-start gap-2">
+          <button
+            type="button"
+            onClick={() => scrollTagsBy(-180)}
+            className="pointer-events-auto hidden h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#ebe3d8] bg-white text-[#4a4036] shadow-[0_6px_18px_rgba(17,24,39,0.10)] max-[1279px]:inline-flex"
+            aria-label="Scroll categories left"
+          >
+            <ChevronLeft className="h-5 w-5" strokeWidth={2.2} />
+          </button>
 
-            return (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => onToggleTag(tag)}
-                className={`pointer-events-auto inline-flex h-[40px] items-center rounded-full border px-4 text-[14px] font-bold tracking-[-0.03em] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] transition-all duration-200 ${isActive
-                    ? "border-[#4f3216] bg-[#291b0c] text-white"
-                    : "border-[#ebe3d8] bg-white text-[#2b2117] hover:border-[#dcd6ce]"
-                  }`}
-              >
-                {getTagEmoji(tag)} {getLocalizedHotelCategoryTag(locale, tag)}
-              </button>
-            );
-          })}
+          <div
+            ref={tagScrollRef}
+            className="min-w-0 flex-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          >
+            <div className="flex min-w-max items-center gap-3 max-[1279px]:gap-2">
+              {mapFilterTags.map((tag) => {
+                const isActive = activeTags.includes(tag);
+
+                return (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => onToggleTag(tag)}
+                    className={`pointer-events-auto inline-flex h-[40px] items-center rounded-full border px-4 text-[14px] font-bold tracking-[-0.03em] shadow-[0_4px_6px_-1px_rgba(0,0,0,0.1)] transition-all duration-200 max-[1279px]:h-[34px] max-[1279px]:shrink-0 max-[1279px]:px-3 max-[1279px]:text-[12px] ${isActive
+                        ? "border-[#4f3216] bg-[#291b0c] text-white"
+                        : "border-[#ebe3d8] bg-white text-[#2b2117] hover:border-[#dcd6ce]"
+                      }`}
+                  >
+                    {getTagEmoji(tag)} {getLocalizedHotelCategoryTag(locale, tag)}
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <button
+            type="button"
+            onClick={() => scrollTagsBy(180)}
+            className="pointer-events-auto hidden h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#ebe3d8] bg-white text-[#4a4036] shadow-[0_6px_18px_rgba(17,24,39,0.10)] max-[1279px]:inline-flex"
+            aria-label="Scroll categories right"
+          >
+            <ChevronRight className="h-5 w-5" strokeWidth={2.2} />
+          </button>
         </div>
       </div>
 
-      <div className="absolute bottom-8 right-8 z-10 flex flex-col items-end gap-3">
+      <div className="absolute bottom-8 right-8 z-10 flex flex-col items-end gap-3 max-[1279px]:bottom-4 max-[1279px]:right-4 max-[1279px]:gap-2">
         <button
           type="button"
           onClick={moveToCurrentLocation}
-          className="flex h-[56px] w-[56px] items-center justify-center rounded-[16px] border border-[#ebe6dd] bg-white text-[#233040] shadow-[0_10px_24px_rgba(17,24,39,0.12)] transition-colors hover:bg-[#faf8f4]"
+          className="flex h-[56px] w-[56px] items-center justify-center rounded-[16px] border border-[#ebe6dd] bg-white text-[#233040] shadow-[0_10px_24px_rgba(17,24,39,0.12)] transition-colors hover:bg-[#faf8f4] max-[1279px]:h-[44px] max-[1279px]:w-[44px] max-[1279px]:rounded-[12px]"
           aria-label={messages.currentLocation}
         >
-          <Crosshair className="h-6 w-6" strokeWidth={2.1} />
+          <Crosshair className="h-6 w-6 max-[1279px]:h-5 max-[1279px]:w-5" strokeWidth={2.1} />
         </button>
 
-        <div className="overflow-hidden rounded-[16px] border border-[#ebe6dd] bg-white shadow-[0_10px_24px_rgba(17,24,39,0.12)]">
+        <div className="overflow-hidden rounded-[16px] border border-[#ebe6dd] bg-white shadow-[0_10px_24px_rgba(17,24,39,0.12)] max-[1279px]:rounded-[12px]">
           <button
             type="button"
             onClick={() => {
               zoomMapBy(1);
             }}
-            className="flex h-[56px] w-[56px] items-center justify-center text-[#233040] transition-colors hover:bg-[#faf8f4]"
+            className="flex h-[56px] w-[56px] items-center justify-center text-[#233040] transition-colors hover:bg-[#faf8f4] max-[1279px]:h-[44px] max-[1279px]:w-[44px]"
             aria-label={messages.zoomIn}
           >
-            <Plus className="h-7 w-7" strokeWidth={2} />
+            <Plus className="h-7 w-7 max-[1279px]:h-5 max-[1279px]:w-5" strokeWidth={2} />
           </button>
           <div className="h-px w-full bg-[#ece7de]" />
           <button
@@ -304,10 +337,10 @@ export function BranchesMapPanel({
             onClick={() => {
               zoomMapBy(-1);
             }}
-            className="flex h-[56px] w-[56px] items-center justify-center text-[#233040] transition-colors hover:bg-[#faf8f4]"
+            className="flex h-[56px] w-[56px] items-center justify-center text-[#233040] transition-colors hover:bg-[#faf8f4] max-[1279px]:h-[44px] max-[1279px]:w-[44px]"
             aria-label={messages.zoomOut}
           >
-            <Minus className="h-7 w-7" strokeWidth={2} />
+            <Minus className="h-7 w-7 max-[1279px]:h-5 max-[1279px]:w-5" strokeWidth={2} />
           </button>
         </div>
       </div>

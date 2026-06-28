@@ -25,28 +25,28 @@ export function GarosugilFloorGuideSection({
   const secondaryCards = content.cards.filter((card) => card.size === "wide");
 
   return (
-    <section className="border-b border-t border-gray-100 bg-white py-20 sm:py-28">
-      <div className="container mx-auto max-w-6xl px-4">
-        <div className="mb-12 space-y-2">
-          <span className="block text-xs font-semibold uppercase tracking-widest text-[#8b6f47]">
+    <section className="border-b border-t border-gray-100 bg-white py-20 sm:py-28 max-[640px]:py-16">
+      <div className="container mx-auto max-w-6xl px-4 max-[640px]:px-5">
+        <div className="mb-12 space-y-2 max-[640px]:mb-10">
+          <span className="block text-xs font-semibold uppercase tracking-widest text-[#8b6f47] max-[640px]:text-[11px]">
             {translateKeyedValue(locale, translations, `${keyBase}.eyebrow`, content.eyebrow, content.eyebrowEn)}
           </span>
-          <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl">
+          <h2 className="text-2xl font-bold text-gray-900 sm:text-3xl max-[640px]:text-[24px]">
             {translateKeyedValue(locale, translations, `${keyBase}.title`, content.title, content.titleEn)}
           </h2>
-          <p className="max-w-2xl text-xs font-light leading-relaxed text-gray-500 sm:text-sm">
+          <p className="max-w-2xl text-xs font-light leading-relaxed text-gray-500 sm:text-sm max-[640px]:text-[13px]">
             {translateKeyedValue(locale, translations, `${keyBase}.description`, content.description, content.descriptionEn)}
           </p>
         </div>
 
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-8 max-[640px]:gap-5 md:grid-cols-3">
           {primaryCards.map((card) => {
             const description = translateKeyedLines(locale, translations, `${keyBase}.card.${card.id}.description`, card.description, card.descriptionEn);
 
             return (
               <article
                 key={card.id}
-                className="group flex aspect-[3/3.6] flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-[#FAF9F5] transition-shadow hover:shadow-md"
+                className="group flex aspect-[3/3.6] flex-col justify-between overflow-hidden rounded-2xl border border-gray-100 bg-[#FAF9F5] transition-shadow hover:shadow-md max-[640px]:aspect-auto"
               >
                 <div className="aspect-[16/10] overflow-hidden">
                   <Image
@@ -57,15 +57,15 @@ export function GarosugilFloorGuideSection({
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="flex flex-1 flex-col justify-between p-5">
+                <div className="flex flex-1 flex-col justify-between p-5 max-[640px]:p-4">
                   <div className="space-y-1.5">
-                    <span className="block text-[13px] font-extrabold uppercase tracking-[0.1em] text-[#8b6f47]">
+                    <span className="block text-[13px] font-extrabold uppercase tracking-[0.1em] text-[#8b6f47] max-[640px]:text-[11px]">
                       {translateKeyedValue(locale, translations, `${keyBase}.card.${card.id}.eyebrow`, card.eyebrow, card.eyebrowEn)}
                     </span>
-                    <h3 className="text-base font-bold text-gray-900">
+                    <h3 className="text-base font-bold text-gray-900 max-[640px]:text-[15px]">
                       {translateKeyedValue(locale, translations, `${keyBase}.card.${card.id}.title`, card.title, card.titleEn)}
                     </h3>
-                    <div className="whitespace-pre-line text-xs font-light leading-relaxed text-gray-500">
+                    <div className="whitespace-pre-line text-xs font-light leading-relaxed text-gray-500 max-[640px]:text-[11px]">
                       {description.map((line) => (
                         <p key={line}>{line}</p>
                       ))}
@@ -77,16 +77,16 @@ export function GarosugilFloorGuideSection({
           })}
         </div>
 
-        <div className="mt-8 grid grid-cols-1 gap-8 md:grid-cols-2">
+        <div className="mt-8 grid grid-cols-1 gap-8 max-[640px]:gap-5 md:grid-cols-2">
           {secondaryCards.map((card) => {
             const description = translateKeyedLines(locale, translations, `${keyBase}.card.${card.id}.description`, card.description, card.descriptionEn);
 
             return (
               <article
                 key={card.id}
-                className="group flex flex-col items-center gap-6 overflow-hidden rounded-2xl border border-gray-100 bg-[#FAF9F5] p-6 transition-shadow hover:shadow-md md:flex-row"
+                className="group flex flex-col items-center gap-6 overflow-hidden rounded-2xl border border-gray-100 bg-[#FAF9F5] p-6 transition-shadow hover:shadow-md max-[640px]:items-start max-[640px]:gap-0 max-[640px]:p-0 md:flex-row"
               >
-                <div className="aspect-[16/11] h-full w-full shrink-0 overflow-hidden rounded-xl md:w-[45%]">
+                <div className="aspect-[16/11] h-full w-full shrink-0 overflow-hidden rounded-xl max-[640px]:h-[220px] max-[640px]:aspect-auto max-[640px]:rounded-none md:w-[45%]">
                   <Image
                     src={card.imageSrc}
                     alt={card.imageAlt}
@@ -95,14 +95,14 @@ export function GarosugilFloorGuideSection({
                     className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
-                <div className="space-y-2">
+                <div className="space-y-2 max-[640px]:w-full max-[640px]:p-5">
                   <span className="block text-[11px] font-extrabold uppercase tracking-[0.1em] text-[#8b6f47]">
                     {translateKeyedValue(locale, translations, `${keyBase}.card.${card.id}.eyebrow`, card.eyebrow, card.eyebrowEn)}
                   </span>
-                  <h3 className="text-base font-bold text-gray-900">
+                  <h3 className="text-base font-bold text-gray-900 max-[640px]:text-[18px] max-[640px]:leading-[1.35]">
                     {translateKeyedValue(locale, translations, `${keyBase}.card.${card.id}.title`, card.title, card.titleEn)}
                   </h3>
-                  <div className="text-xs font-light leading-relaxed text-gray-500">
+                  <div className="text-xs font-light leading-relaxed text-gray-500 max-[640px]:pt-1 max-[640px]:text-[14px] max-[640px]:leading-[1.8]">
                     {description.map((line) => (
                       <p key={line}>{line}</p>
                     ))}

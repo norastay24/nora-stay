@@ -1,9 +1,10 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { ChevronRight, Menu, Search, X } from "lucide-react";
 import type { AdminHotelBranch } from "@/app/admin/_components/hotels/admin-hotels-shared";
 import { BranchPreparingModal } from "@/app/branches/_components/BranchPreparingModal";
 import {
@@ -61,10 +62,13 @@ function setLocaleCookie(nextLocale: AppLocale) {
   window.localStorage.setItem(LOCALE_COOKIE_NAME, nextLocale);
 }
 
+const MOBILE_MENU_STORAGE_KEY = "nora-stay-mobile-menu-open";
+
 export function CommonHeaderClient({ branches, locale, translations }: CommonHeaderClientProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [preparingBranch, setPreparingBranch] = useState<BranchItem | null>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const locations = useMemo(
     () => buildLocationItems(branches, locale, translations),
     [branches, locale, translations],
@@ -85,9 +89,32 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
     { href: "/experience", label: messages.experience },
   ] as const;
 
-  if (isAdminRoute) {
-    return null;
-  }
+  useEffect(() => {
+    const frameId = window.requestAnimationFrame(() => {
+      if (window.sessionStorage.getItem(MOBILE_MENU_STORAGE_KEY) === "1") {
+        setIsMobileMenuOpen(true);
+      }
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) {
+      window.sessionStorage.removeItem(MOBILE_MENU_STORAGE_KEY);
+      document.body.style.overflow = "";
+      return;
+    }
+
+    window.sessionStorage.setItem(MOBILE_MENU_STORAGE_KEY, "1");
+    document.body.style.overflow = "hidden";
+
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
 
   function handleLocaleChange(nextLocale: AppLocale) {
     if (nextLocale === locale) {
@@ -96,6 +123,14 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
 
     setLocaleCookie(nextLocale);
     router.refresh();
+  }
+
+  function handleMobileMenuClose() {
+    setIsMobileMenuOpen(false);
+  }
+
+  if (isAdminRoute) {
+    return null;
   }
 
   return (
@@ -123,7 +158,7 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
           </Link>
 
           <nav
-            className="flex items-center justify-center gap-[42px] justify-self-center max-[1024px]:order-3 max-[1024px]:w-full max-[1024px]:gap-6 max-[640px]:justify-start max-[640px]:gap-[18px] max-[640px]:overflow-x-auto"
+            className="flex items-center justify-center gap-[42px] justify-self-center max-[1024px]:hidden"
             aria-label="Main navigation"
           >
             {navItems.map((item) => {
@@ -235,7 +270,7 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
             </div>
           </nav>
 
-          <div className="flex items-center gap-[14px] max-[640px]:gap-2.5">
+          <div className="flex items-center gap-[14px] max-[1024px]:hidden max-[640px]:gap-2.5">
             <div
               className="inline-flex h-[32px] items-center gap-1 rounded-full border border-[#e7e8ec] bg-white p-[3px] text-[12px] font-bold text-[#757b86]"
               aria-label={messages.language}
@@ -272,8 +307,211 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
               <span>{messages.findStays}</span>
             </Link>
           </div>
+
+          <div className="hidden items-center gap-4 max-[1024px]:flex">
+            <Link
+              href="/branches"
+              className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-[#1f2937] transition-colors duration-200 hover:text-[#8b6f47]"
+              aria-label={messages.findStays}
+            >
+              <Search className="h-[22px] w-[22px]" strokeWidth={2.05} />
+            </Link>
+            <button
+              type="button"
+              onClick={() => setIsMobileMenuOpen(true)}
+              className="inline-flex h-10 w-10 cursor-pointer items-center justify-center rounded-full text-[#1f2937] transition-colors duration-200 hover:text-[#8b6f47]"
+              aria-label="Open menu"
+              aria-expanded={isMobileMenuOpen}
+              aria-controls="mobile-header-menu"
+            >
+              <Menu className="h-[23px] w-[23px]" strokeWidth={2.05} />
+            </button>
+          </div>
         </div>
       </header>
+
+      {isMobileMenuOpen ? (
+        <div
+          id="mobile-header-menu"
+          className="fixed inset-0 z-[60] hidden bg-[rgba(17,17,17,0.14)] text-white max-[1024px]:block"
+          style={{ animation: "mobileMenuOverlayIn 220ms ease-out" }}
+        >
+          <div
+            className="flex h-full w-full flex-col bg-[#8b6f47] px-10 pb-8 pt-12 max-[640px]:px-6 max-[640px]:pb-6 max-[640px]:pt-8"
+            style={{ animation: "mobileMenuPanelIn 260ms ease-out" }}
+          >
+            <div className="flex items-start justify-between">
+              <span className="text-[24px] font-extrabold tracking-[0.12em] text-white">
+                NORA STAY
+              </span>
+              <button
+                type="button"
+                onClick={handleMobileMenuClose}
+                className="inline-flex h-10 w-10 items-center justify-center text-white"
+                aria-label="Close menu"
+              >
+                <X className="h-8 w-8" strokeWidth={2.1} />
+              </button>
+            </div>
+
+            <div className="mt-10 space-y-0 max-[640px]:mt-7">
+              {navItems.map((item, index) => {
+                const isActive =
+                  item.href === "/"
+                    ? pathname === "/"
+                    : pathname === item.href || pathname.startsWith(`${item.href}/`);
+
+                return (
+                  <div
+                    key={item.href}
+                    className={index > 0 ? "border-t border-[rgba(255,255,255,0.12)]" : ""}
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={handleMobileMenuClose}
+                      className="flex items-center justify-between py-7 max-[640px]:py-6"
+                    >
+                      <span className="flex items-center gap-4 text-[22px] font-bold tracking-[-0.04em] max-[640px]:text-[18px]">
+                        <span aria-hidden="true">{index === 0 ? "🏠" : "✨"}</span>
+                        <span className={isActive ? "text-white" : "text-white/95"}>{item.label}</span>
+                      </span>
+                      <ChevronRight className="h-8 w-8 text-white/70 max-[640px]:h-7 max-[640px]:w-7" />
+                    </Link>
+                  </div>
+                );
+              })}
+
+              <div className="border-t border-[rgba(255,255,255,0.12)] py-7 max-[640px]:py-6">
+                <div className="flex items-center gap-4 text-[22px] font-bold tracking-[-0.04em] text-white/70 max-[640px]:text-[18px]">
+                  <span aria-hidden="true">🏢</span>
+                  <span>{messages.locations}</span>
+                </div>
+
+                <div className="mt-5 space-y-4 pl-[44px] max-[640px]:mt-4 max-[640px]:pl-10">
+                  {locations.map((location) => {
+                    const isActive =
+                      pathname === location.href || pathname.startsWith(`${location.href}/`);
+
+                    if (!location.isOperating) {
+                      return (
+                        <button
+                          key={location.href}
+                          type="button"
+                          onClick={() => {
+                            handleMobileMenuClose();
+                            setPreparingBranch(location.preparingBranch);
+                          }}
+                          className="flex w-full items-center justify-between gap-4 text-left"
+                        >
+                          <span
+                            className={[
+                              "text-[20px] font-bold tracking-[-0.04em] max-[640px]:text-[16px]",
+                              isActive ? "text-white" : "text-white/55",
+                            ].join(" ")}
+                          >
+                            {location.label}
+                          </span>
+                          <span className="inline-flex h-8 items-center rounded-full bg-[#b6881b] px-4 text-[14px] font-bold text-[#ffcf53] max-[640px]:h-7 max-[640px]:px-3 max-[640px]:text-[12px]">
+                            PREPARING
+                          </span>
+                        </button>
+                      );
+                    }
+
+                    return (
+                      <Link
+                        key={location.href}
+                        href={location.href}
+                        onClick={handleMobileMenuClose}
+                        className="flex items-center justify-between gap-4"
+                      >
+                        <span
+                          className={[
+                            "text-[20px] font-bold tracking-[-0.04em] max-[640px]:text-[16px]",
+                            isActive ? "text-white" : "text-white/95",
+                          ].join(" ")}
+                        >
+                          {location.label}
+                        </span>
+                        <span className="inline-flex h-8 items-center rounded-full bg-[#7d9655] px-4 text-[14px] font-bold text-[#00f08a] max-[640px]:h-7 max-[640px]:px-3 max-[640px]:text-[12px]">
+                          ACTIVE
+                        </span>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="border-t border-b border-[rgba(255,255,255,0.12)]">
+                <Link
+                  href="/branches"
+                  onClick={handleMobileMenuClose}
+                  className="flex items-center justify-between py-7 max-[640px]:py-6"
+                >
+                  <span className="flex items-center gap-4 text-[22px] font-bold tracking-[-0.04em] max-[640px]:text-[18px]">
+                    <Search className="h-7 w-7 max-[640px]:h-6 max-[640px]:w-6" strokeWidth={2.1} />
+                    <span>{messages.findStays}</span>
+                  </span>
+                  <ChevronRight className="h-8 w-8 text-white/70 max-[640px]:h-7 max-[640px]:w-7" />
+                </Link>
+              </div>
+            </div>
+
+            <div className="mt-auto border-b border-[rgba(255,255,255,0.12)] pb-14 pt-7 max-[640px]:pb-7">
+              <div
+                className="inline-flex h-[32px] items-center rounded-full border border-[rgba(255,255,255,0.22)] px-6"
+                aria-label={messages.language}
+              >
+                {APP_LOCALES.map((option, index) => {
+                  const isActive = locale === option;
+
+                  return (
+                    <div key={option} className="flex items-center">
+                      <button
+                        type="button"
+                        onClick={() => handleLocaleChange(option)}
+                        className={[
+                          "text-[14px] font-bold tracking-[0.02em] transition-colors",
+                          isActive ? "text-white" : "text-white/40 hover:text-white",
+                        ].join(" ")}
+                      >
+                        {option.toUpperCase()}
+                      </button>
+                      {index < APP_LOCALES.length - 1 ? (
+                        <span className="mx-3 text-white/30" aria-hidden="true">
+                          |
+                        </span>
+                      ) : null}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
+      <style jsx global>{`
+        @keyframes mobileMenuOverlayIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
+          }
+        }
+
+        @keyframes mobileMenuPanelIn {
+          from {
+            opacity: 0;
+            transform: translateX(100%);
+          }
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
 
       {preparingBranch ? (
         <BranchPreparingModal

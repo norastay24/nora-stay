@@ -97,7 +97,7 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
 
   return (
     <footer className="bg-[#181818] text-white">
-      <div className="mx-auto max-w-[1200px] px-16 py-20">
+      <div className="mx-auto max-w-[1200px] px-16 py-20 max-[1024px]:px-10 max-[640px]:px-5 max-[640px]:py-14">
         <div className="flex items-start justify-between gap-10 max-[900px]:flex-col">
           <div>
             <Link href="/" aria-label="Nora Stay" className="inline-flex items-end gap-[6px] leading-none">
@@ -116,12 +116,12 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
                 />
               </span>
             </Link>
-            <p className="mt-4 text-[12px] font-medium leading-[1.55] tracking-[-0.03em] text-[#6f737a]">
+            <p className="mt-4 text-[12px] font-medium leading-[1.55] tracking-[-0.03em] text-[#6f737a] max-[640px]:text-[11px]">
               {messages.tagline}
             </p>
           </div>
 
-          <div className="flex items-center gap-4 self-start max-[900px]:self-auto">
+          <div className="flex items-center gap-4 self-start max-[900px]:self-auto max-[640px]:w-full max-[640px]:flex-wrap">
             <div
               className="inline-flex h-[32px] items-center gap-1 rounded-full border border-[#303030] bg-[#222222] p-[3px] text-[13px] font-bold text-[#7f848b]"
               aria-label={messages.language}
@@ -149,7 +149,7 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
 
             <Link
               href="/branches"
-              className="inline-flex h-[32px] cursor-pointer items-center gap-[10px] rounded-full border border-[#303030] bg-[#222222] px-4 text-[13px] font-bold text-white transition-all duration-200 hover:border-[#6d6d6d] hover:bg-white/15"
+              className="inline-flex h-[32px] cursor-pointer items-center gap-[10px] rounded-full border border-[#303030] bg-[#222222] px-4 text-[13px] font-bold text-white transition-all duration-200 hover:border-[#6d6d6d] hover:bg-white/15 max-[640px]:justify-center"
             >
               <span
                 className="relative h-[13px] w-[13px] rounded-full border-2 border-[#9ea3ae] after:absolute after:bottom-[-4px] after:right-[-4px] after:h-[2px] after:w-[6px] after:origin-center after:rotate-45 after:rounded-full after:bg-[#9ea3ae] after:content-['']"
@@ -160,9 +160,9 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
           </div>
         </div>
 
-        <div className="mt-10 border-t border-[#272727] pt-8">
+        <div className="mt-10 border-t border-[#272727] pt-8 max-[640px]:mt-8 max-[640px]:pt-6">
           <div className="flex items-start justify-between gap-10 max-[900px]:flex-col">
-            <div className="space-y-2 text-[12px] leading-[1.2] tracking-[-0.03em] text-[#7b7f85]">
+            <div className="space-y-2 text-[12px] leading-[1.2] tracking-[-0.03em] text-[#7b7f85] max-[640px]:text-[11px]">
               <p>{messages.address}</p>
               <p className="font-semibold text-[#d7a44d]">{messages.inquiry}</p>
             </div>
@@ -190,13 +190,13 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
           </div>
         </div>
 
-        <div className="mt-6 border-t border-[#272727] pt-8">
+        <div className="mt-6 border-t border-[#272727] pt-8 max-[640px]:pt-6">
           <div className="flex items-end justify-between gap-10 max-[900px]:flex-col max-[900px]:items-start">
-            <div className="space-y-3 text-[12px] leading-[1.2] tracking-[-0.03em] text-[#55585d]">
+            <div className="space-y-3 text-[12px] leading-[1.2] tracking-[-0.03em] text-[#55585d] max-[640px]:text-[11px]">
               <p>(주) 노라스테이 | 대표 문성호 | 사업자등록번호: 886-81-02339</p>
-              <div className="flex items-center gap-3 max-[640px]:flex-wrap">
+              <div className="flex items-center gap-3 max-[640px]:flex-wrap max-[640px]:gap-y-2">
                 <p>(주) 노라투어 | 대표 문성호 | 사업자등록번호: 363-87-01411</p>
-                <span>|</span>
+                <span className="max-[640px]:hidden">|</span>
                 <Link
                   href="/admin/enter"
                   className="inline-flex h-[26px] items-center rounded-full border border-[#404040] bg-white/5 px-3 text-[12px] font-semibold text-[#9a9da2] transition-all hover:border-white/40 hover:bg-white/15 hover:text-white"
@@ -206,7 +206,7 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
               </div>
             </div>
 
-            <p className="text-[12px] font-medium tracking-[-0.03em] text-[#55585d]">
+            <p className="text-[12px] font-medium tracking-[-0.03em] text-[#55585d] max-[640px]:text-[11px]">
               {messages.copyright}
             </p>
           </div>

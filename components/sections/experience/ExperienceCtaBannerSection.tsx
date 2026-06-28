@@ -46,7 +46,7 @@ export function ExperienceCtaBannerSection({
 
   return (
     <section className="relative overflow-hidden">
-      <div className="relative h-[320px]">
+      <div className="relative h-[320px] max-[640px]:h-[280px]">
         <Image
           src="/images/section-images/experience/photo-2.jpg"
           alt="Nora Stay stay scene"
@@ -57,8 +57,8 @@ export function ExperienceCtaBannerSection({
 
         <div className="absolute inset-0 bg-[#1a1715] opacity-90" />
 
-        <div className="relative mx-auto flex h-full max-w-[1200px] flex-col items-center justify-center px-8 text-center text-white">
-          <h2 className="text-[30px] font-bold leading-[1.2] tracking-[-0.06em]">
+        <div className="relative mx-auto flex h-full max-w-[1200px] flex-col items-center justify-center px-8 text-center text-white max-[640px]:px-5">
+          <h2 className="text-[30px] font-bold leading-[1.2] tracking-[-0.06em] max-[1024px]:text-[27px] max-[640px]:text-[22px]">
             {messages.ctaTitle.split("\n").map((line, index) => (
               <span key={`${line}-${index}`}>
                 {index > 0 ? <br /> : null}
@@ -67,7 +67,7 @@ export function ExperienceCtaBannerSection({
             ))}
           </h2>
 
-          <p className="mt-6 text-[14px] leading-[1.7] tracking-[-0.03em] text-white/78">
+          <p className="mt-6 text-[14px] leading-[1.7] tracking-[-0.03em] text-white/78 max-[640px]:mt-5 max-[640px]:text-[13px]">
             {messages.ctaDescription.split("\n").map((line, index) => (
               <span key={`${line}-${index}`}>
                 {index > 0 ? <br /> : null}
@@ -78,7 +78,7 @@ export function ExperienceCtaBannerSection({
 
           <Link
             href="/locations/garosugil"
-            className="mt-6 inline-flex h-[40px] items-center gap-3 rounded-full bg-[#8b6f47] px-9 text-[12px] font-bold tracking-[-0.03em] text-white transition-colors duration-200 hover:bg-[#e1b057]"
+            className="mt-6 inline-flex h-[40px] items-center gap-3 rounded-full bg-[#8b6f47] px-9 text-[12px] font-bold tracking-[-0.03em] text-white transition-colors duration-200 hover:bg-[#e1b057] max-[640px]:mt-5 max-[640px]:h-[38px] max-[640px]:px-7 max-[640px]:text-[11px]"
           >
             <span>{messages.ctaButton}</span>
             <ChevronRightIcon />

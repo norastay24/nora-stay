@@ -216,7 +216,7 @@ export function GlobalEventPopup({ settings, locale, translations }: GlobalEvent
 
   return (
     <div className="fixed inset-0 z-[80] flex items-center justify-center bg-[rgba(22,24,29,0.55)] p-3 sm:p-5">
-      <div className="pointer-events-auto w-full max-w-[520px] overflow-hidden rounded-[28px] bg-white shadow-[0_24px_72px_rgba(0,0,0,0.22)]">
+      <div className="pointer-events-auto w-full max-w-[520px] overflow-hidden rounded-[28px] bg-white shadow-[0_24px_72px_rgba(0,0,0,0.22)] max-[640px]:max-w-[94vw] max-[640px]:rounded-[22px]">
         <div className="relative">
           {settings.imageUrl ? (
             <>
@@ -224,29 +224,29 @@ export function GlobalEventPopup({ settings, locale, translations }: GlobalEvent
               <img
                 src={settings.imageUrl}
                 alt={title || messages.imageAlt}
-                className="h-[260px] w-full object-cover sm:h-[360px]"
+                className="h-[220px] w-full object-cover sm:h-[360px]"
               />
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(0,0,0,0.78)] via-[rgba(0,0,0,0.32)] to-transparent px-5 pb-7 pt-12 sm:px-7 sm:pb-6">
-                <span className="inline-flex rounded-full bg-[#f0bf57] px-3.5 py-1 text-[10px] font-black tracking-[0.04em] text-[#231c12]">
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[rgba(0,0,0,0.78)] via-[rgba(0,0,0,0.32)] to-transparent px-5 pb-6 pt-12 sm:px-7 sm:pb-6">
+                <span className="inline-flex rounded-full bg-[#f0bf57] px-3.5 py-1 text-[10px] font-black tracking-[0.04em] text-[#231c12] max-[640px]:px-3 max-[640px]:text-[9px]">
                   {messages.grandOpen}
                 </span>
-                <h2 className="text-[20px] font-bold tracking-[-0.05em] text-white sm:text-[26px]">
+                <h2 className="text-[20px] font-bold tracking-[-0.05em] text-white sm:text-[26px] max-[640px]:text-[18px]">
                   {title}
                 </h2>
               </div>
             </>
           ) : (
-            <div className="flex h-[220px] items-center justify-center bg-[#f6f7fa] text-[#9aa4b2] sm:h-[320px]">
+            <div className="flex h-[200px] items-center justify-center bg-[#f6f7fa] text-[#9aa4b2] sm:h-[320px] max-[640px]:h-[180px]">
               {messages.noImage}
             </div>
           )}
         </div>
 
-        <div className="px-6 pb-8 pt-7 text-center sm:px-9 sm:pb-9">
-          <h3 className="text-[16px] font-bold tracking-[-0.04em] text-[#1e2430] sm:text-[20px]">
+        <div className="px-6 pb-8 pt-7 text-center sm:px-9 sm:pb-9 max-[640px]:px-5 max-[640px]:pb-6 max-[640px]:pt-5">
+          <h3 className="text-[16px] font-bold tracking-[-0.04em] text-[#1e2430] sm:text-[20px] max-[640px]:text-[15px]">
             {title}
           </h3>
-          <p className="mx-auto mt-4 max-w-[500px] break-keep text-[12px] leading-[1.85] tracking-[-0.04em] text-[#7b8596] sm:text-[13px]">
+          <p className="mx-auto mt-4 max-w-[500px] break-keep text-[12px] leading-[1.85] tracking-[-0.04em] text-[#7b8596] sm:text-[13px] max-[640px]:mt-3 max-[640px]:text-[11px]">
             {description}
           </p>
 
@@ -267,13 +267,13 @@ export function GlobalEventPopup({ settings, locale, translations }: GlobalEvent
 
               window.open(settings.linkUrl, "_blank", "noopener,noreferrer");
             }}
-            className="mt-8 inline-flex h-[40px] w-full items-center justify-center rounded-full bg-[#9b7c4d] px-8 text-[12px] font-bold tracking-[-0.03em] text-white shadow-sm transition-colors hover:bg-[#87673d] cursor-pointer"
+            className="mt-8 inline-flex h-[40px] w-full items-center justify-center rounded-full bg-[#9b7c4d] px-8 text-[12px] font-bold tracking-[-0.03em] text-white shadow-sm transition-colors hover:bg-[#87673d] cursor-pointer max-[640px]:mt-6 max-[640px]:h-[38px] max-[640px]:text-[11px]"
           >
             {buttonLabel}
           </button>
         </div>
 
-        <div className="flex items-center justify-between border-t border-[#eef0f4] bg-[#fbfcfe] px-6 py-4 sm:px-8">
+        <div className="flex items-center justify-between border-t border-[#eef0f4] bg-[#fbfcfe] px-6 py-4 sm:px-8 max-[640px]:px-5 max-[640px]:py-3">
           <button
             type="button"
             onClick={() => {
@@ -281,7 +281,7 @@ export function GlobalEventPopup({ settings, locale, translations }: GlobalEvent
               setSessionDismissed(sessionPopupKey);
               setClosedPopupKey(sessionPopupKey);
             }}
-            className="text-[12px] font-semibold tracking-[-0.03em] text-[#848d9c] transition-colors hover:text-[#5d6573]"
+            className="text-[12px] font-semibold tracking-[-0.03em] text-[#848d9c] transition-colors hover:text-[#5d6573] max-[640px]:text-[11px]"
           >
             {messages.dismissToday}
           </button>
@@ -291,7 +291,7 @@ export function GlobalEventPopup({ settings, locale, translations }: GlobalEvent
               setSessionDismissed(sessionPopupKey);
               setClosedPopupKey(sessionPopupKey);
             }}
-            className="text-[12px] font-semibold tracking-[-0.03em] text-[#737b89] transition-colors hover:text-[#1f2937]"
+            className="text-[12px] font-semibold tracking-[-0.03em] text-[#737b89] transition-colors hover:text-[#1f2937] max-[640px]:text-[11px]"
           >
             {messages.close}
           </button>

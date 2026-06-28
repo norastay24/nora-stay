@@ -26,7 +26,7 @@ export function HomeCtaBannerSection({ bookingUrl, locale, translations }: HomeC
   };
 
   return (
-    <section className="relative min-h-[200px] overflow-hidden">
+    <section className="relative min-h-[200px] overflow-hidden max-[640px]:min-h-[240px]">
       <Image
         src="/images/section-images/가로수길점.jpg"
         alt="배경 이미지"
@@ -37,12 +37,12 @@ export function HomeCtaBannerSection({ bookingUrl, locale, translations }: HomeC
 
       <div className="absolute inset-0 bg-black/55" />
 
-      <div className="relative mx-auto flex min-h-[200px] max-w-[1200px] items-center justify-between px-16 py-10 text-white">
-        <div className="max-w-[460px]">
-          <h2 className="whitespace-pre-line text-[30px] font-bold leading-[1.35] tracking-[-0.05em]">
+      <div className="relative mx-auto flex min-h-[200px] max-w-[1200px] items-center justify-between px-16 py-10 text-white max-[1024px]:px-10 max-[640px]:min-h-[240px] max-[640px]:flex-col max-[640px]:items-start max-[640px]:justify-center max-[640px]:gap-6 max-[640px]:px-5 max-[640px]:py-8">
+        <div className="max-w-[460px] max-[640px]:max-w-full">
+          <h2 className="whitespace-pre-line text-[30px] font-bold leading-[1.35] tracking-[-0.05em] max-[1024px]:text-[27px] max-[640px]:text-[22px]">
             {section.title}
           </h2>
-          <p className="mt-2 text-[14px] font-medium leading-[1.8] text-white/75">
+          <p className="mt-2 text-[14px] font-medium leading-[1.8] text-white/75 max-[640px]:text-[13px]">
             {section.description}
           </p>
         </div>
@@ -51,7 +51,7 @@ export function HomeCtaBannerSection({ bookingUrl, locale, translations }: HomeC
           href={bookingUrl}
           target="_blank"
           rel="noreferrer"
-          className="inline-flex items-center gap-3 rounded-full bg-[#8b6f47] px-8 py-4 text-[12px] font-bold text-white transition-colors duration-200 hover:bg-[#705835]"
+          className="inline-flex items-center gap-3 rounded-full bg-[#8b6f47] px-8 py-4 text-[12px] font-bold text-white transition-colors duration-200 hover:bg-[#705835] max-[640px]:px-6 max-[640px]:py-3"
         >
           <DotIcon />
           <span>{section.ctaLabel}</span>
