@@ -49,6 +49,10 @@ type NaverMarkerLike = {
   setIcon: (icon: { content: string; anchor: unknown }) => void;
 };
 
+type NaverMapEventLike = {
+  trigger: (target: unknown, eventName: string) => void;
+};
+
 function createMarkerIcon(color: string, isActive: boolean) {
   return `
     <div style="
@@ -220,9 +224,10 @@ export function BranchesMapPanel({
     const { maps } = window.naver;
     const map = mapRef.current;
     const targetElement = mapElementRef.current;
+    const mapEvent = maps.Event as unknown as NaverMapEventLike;
 
     const handleResize = () => {
-      maps.Event.trigger(map, "resize");
+      mapEvent.trigger(map, "resize");
 
       const resizedMap = mapRef.current as NaverMapLike | null;
 
