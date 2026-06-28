@@ -1,5 +1,35 @@
-<!-- BEGIN:nextjs-agent-rules -->
-# This is NOT the Next.js you know
+# AGENTS.md
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
-<!-- END:nextjs-agent-rules -->
+## 기본 규칙
+- 기존 코드 스타일을 따릅니다.
+- 기존 기능 및 디자인은 유지합니다.
+- 사용자가 요청하지 않은 변경은 하지 않습니다.
+
+## 출력 규칙
+- 전체 파일을 다시 출력하지 않습니다.
+- 불필요한 설명 금지 (필요 시 1~2줄만)
+
+## 범위 제한
+- 명시된 파일만 작업합니다.
+- 관련 없는 파일은 절대 수정하지 않습니다.
+- 수정 시 파일 경로를 명확히 포함합니다.
+
+## 코드 품질
+- 변경 후 타입 체크 및 린트를 통과해야 합니다.
+
+## DB 규칙
+- SQL 스키마 변경이 있으면 sql.txt 맨 하단에만 추가합니다.
+- 이제 슈퍼베이스에서 새로 테이블을 만들 때 grant를 필수로 작성해야됨
+
+## 컨텍스트 최적화
+- 필요한 코드만 참고합니다.
+- 긴 파일은 관련 부분만 사용합니다.
+- import된 파일 전체를 읽지 않습니다. 필요한 경우에만 최소 범위로 참고합니다.
+
+## 응답 형식
+- 코드 외 텍스트 최소화
+- 필요 시 한 줄 요약만 추가
+
+## 금지 사항
+- 전체 파일 재작성 금지
+- 변경되지 않은 코드 출력 금지
