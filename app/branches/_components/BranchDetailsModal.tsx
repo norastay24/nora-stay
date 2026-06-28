@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ChevronLeft, ChevronRight, MapPin, X } from "lucide-react";
 import {
   getBranchDisplayAddressWithTranslations,
@@ -69,6 +69,8 @@ export function BranchDetailsModal({ branch, locale, translations, onClose }: Br
     }),
   };
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
   const totalImages = branch.imageSources.length;
   const branchName = getBranchDisplayNameWithTranslations(branch, locale, translations);
   const branchAddress = getBranchDisplayAddressWithTranslations(branch, locale, translations);
@@ -80,7 +82,7 @@ export function BranchDetailsModal({ branch, locale, translations, onClose }: Br
     if (totalImages <= 1) return;
     const interval = window.setInterval(() => {
       setActiveImageIndex((curr) => (curr + 1) % totalImages);
-    }, 3000);
+    }, 6000);
     return () => window.clearInterval(interval);
   }, [totalImages]);
 
@@ -89,6 +91,31 @@ export function BranchDetailsModal({ branch, locale, translations, onClose }: Br
       if (direction === "prev") return curr === 0 ? totalImages - 1 : curr - 1;
       return curr === totalImages - 1 ? 0 : curr + 1;
     });
+  }
+
+  function handleImageTouchStart(event: React.TouchEvent<HTMLDivElement>) {
+    const touch = event.touches[0];
+    touchStartXRef.current = touch.clientX;
+    touchStartYRef.current = touch.clientY;
+  }
+
+  function handleImageTouchEnd(event: React.TouchEvent<HTMLDivElement>) {
+    if (touchStartXRef.current === null || touchStartYRef.current === null || totalImages <= 1) {
+      return;
+    }
+
+    const touch = event.changedTouches[0];
+    const diffX = touch.clientX - touchStartXRef.current;
+    const diffY = touch.clientY - touchStartYRef.current;
+
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+
+    if (Math.abs(diffX) < 40 || Math.abs(diffX) <= Math.abs(diffY)) {
+      return;
+    }
+
+    moveSlide(diffX < 0 ? "next" : "prev");
   }
 
   return (
@@ -110,7 +137,11 @@ export function BranchDetailsModal({ branch, locale, translations, onClose }: Br
           <X className="hidden h-4 w-4 xl:block" strokeWidth={2} />
         </button>
 
-        <div className="relative h-[36vh] min-h-[250px] w-full shrink-0 overflow-hidden bg-[#e9e2d8] xl:h-[52vh] xl:min-h-[280px]">
+        <div
+          className="relative h-[36vh] min-h-[250px] w-full shrink-0 overflow-hidden bg-[#e9e2d8] touch-pan-y xl:h-[52vh] xl:min-h-[280px]"
+          onTouchStart={handleImageTouchStart}
+          onTouchEnd={handleImageTouchEnd}
+        >
           {branch.imageSources.map((src, index) => (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -170,24 +201,23 @@ export function BranchDetailsModal({ branch, locale, translations, onClose }: Br
               ) : null}
             </div>
 
-            <div className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-1.5 border-b border-gray-100 pb-5 text-[11px] text-gray-500 xl:mt-4 xl:gap-x-3 xl:pb-5 xl:text-[12px]">
+            <div className="mt-4 flex flex-wrap items-start gap-x-2 gap-y-1.5 border-b border-gray-100 pb-5 text-[11px] text-gray-500 xl:mt-4 xl:items-center xl:gap-x-3 xl:pb-5 xl:text-[12px]">
               <span className="flex items-center gap-1 font-medium text-gray-700">
                 <span>🕒</span> {branchHours}
               </span>
-              <span className="text-gray-300">|</span>
-              <span className="flex items-center gap-1">
+              <span className="hidden text-gray-300 xl:inline">|</span>
+              <span className="flex basis-full items-center gap-1 xl:basis-auto">
                 <span>📍</span> {branchAddress}
               </span>
-              <span className="text-gray-300">|</span>
+              <span className="hidden text-gray-300 xl:inline">|</span>
 
               <Link
                 href={`https://map.naver.com/p/search/${encodeURIComponent(branch.address)}`}
                 target="_blank"
-                className="inline-flex items-center gap-1.5 font-bold text-[#00a359] transition-opacity hover:opacity-80"
+                className="inline-flex basis-full items-center gap-1 font-bold text-[#00a359] transition-opacity hover:opacity-80 xl:basis-auto"
               >
                 <MapPin size={14} className="text-[#00a359]" />
-                <span className="xl:hidden">{locale === "ko" ? "길찾기" : "Directions"}</span>
-                <span className="hidden xl:inline">{messages.naverMap}</span>
+                <span>{messages.naverMap}</span>
               </Link>
             </div>
 

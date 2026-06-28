@@ -99,10 +99,10 @@ export function GarosugilFloorGuideSection({
                   <span className="block text-[11px] font-extrabold uppercase tracking-[0.1em] text-[#8b6f47]">
                     {translateKeyedValue(locale, translations, `${keyBase}.card.${card.id}.eyebrow`, card.eyebrow, card.eyebrowEn)}
                   </span>
-                  <h3 className="text-base font-bold text-gray-900 max-[640px]:text-[18px] max-[640px]:leading-[1.35]">
+                  <h3 className="text-base font-bold text-gray-900 max-[640px]:text-[15px] max-[640px]:leading-[1.35]">
                     {translateKeyedValue(locale, translations, `${keyBase}.card.${card.id}.title`, card.title, card.titleEn)}
                   </h3>
-                  <div className="text-xs font-light leading-relaxed text-gray-500 max-[640px]:pt-1 max-[640px]:text-[14px] max-[640px]:leading-[1.8]">
+                  <div className="text-xs font-light leading-relaxed text-gray-500 max-[640px]:pt-1 max-[640px]:text-[11px] max-[640px]:leading-[1.8]">
                     {description.map((line) => (
                       <p key={line}>{line}</p>
                     ))}

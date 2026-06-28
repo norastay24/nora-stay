@@ -302,14 +302,14 @@ export function BranchesMapPanel({
       <div ref={mapElementRef} className="h-full w-full" />
 
       <div className="pointer-events-none absolute left-8 right-6 top-6 z-10 max-[1279px]:left-3 max-[1279px]:right-3 max-[1279px]:top-3">
-        <div className="flex items-start gap-2">
+        <div className="flex items-start gap-2 max-[1279px]:items-center">
           <button
             type="button"
             onClick={() => scrollTagsBy(-180)}
-            className="pointer-events-auto hidden h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#ebe3d8] bg-white text-[#4a4036] shadow-[0_6px_18px_rgba(17,24,39,0.10)] max-[1279px]:inline-flex"
+            className="pointer-events-auto hidden h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#ebe3d8] bg-white text-[#4a4036] shadow-[0_6px_18px_rgba(17,24,39,0.10)] max-[1279px]:inline-flex max-[1279px]:h-[34px] max-[1279px]:w-[34px]"
             aria-label="Scroll categories left"
           >
-            <ChevronLeft className="h-5 w-5" strokeWidth={2.2} />
+            <ChevronLeft className="h-5 w-5 max-[1279px]:h-4 max-[1279px]:w-4" strokeWidth={2.2} />
           </button>
 
           <div
@@ -340,10 +340,10 @@ export function BranchesMapPanel({
           <button
             type="button"
             onClick={() => scrollTagsBy(180)}
-            className="pointer-events-auto hidden h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#ebe3d8] bg-white text-[#4a4036] shadow-[0_6px_18px_rgba(17,24,39,0.10)] max-[1279px]:inline-flex"
+            className="pointer-events-auto hidden h-[42px] w-[42px] shrink-0 items-center justify-center rounded-full border border-[#ebe3d8] bg-white text-[#4a4036] shadow-[0_6px_18px_rgba(17,24,39,0.10)] max-[1279px]:inline-flex max-[1279px]:h-[34px] max-[1279px]:w-[34px]"
             aria-label="Scroll categories right"
           >
-            <ChevronRight className="h-5 w-5" strokeWidth={2.2} />
+            <ChevronRight className="h-5 w-5 max-[1279px]:h-4 max-[1279px]:w-4" strokeWidth={2.2} />
           </button>
         </div>
       </div>

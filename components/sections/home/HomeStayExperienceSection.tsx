@@ -55,18 +55,18 @@ export function HomeStayExperienceSection({ locale, translations }: HomeStayExpe
   ] as const;
 
   return (
-    <section className="bg-[#fff] px-4 py-28 max-[1024px]:py-20 max-[640px]:px-3 max-[640px]:py-16">
+    <section className="bg-[#fff] px-4 py-28 max-[1024px]:px-5 max-[1024px]:py-20 max-[640px]:px-3 max-[640px]:py-16">
       <div className="mx-auto max-w-[1200px]">
         <div className="text-center">
-          <p className="text-[14px] font-semibold tracking-[0.14em] text-[#9e7646] max-[640px]:text-[12px] max-[640px]:tracking-[0.12em]">
+          <p className="text-[14px] font-semibold tracking-[0.14em] text-[#9e7646] max-[1024px]:text-[13px] max-[640px]:text-[12px] max-[640px]:tracking-[0.12em]">
             STAY & EXPERIENCE
           </p>
-          <h2 className="mt-2 text-[36px] font-bold tracking-[-0.05em] text-[#2d2926] max-[1024px]:text-[32px] max-[640px]:text-[26px]">
+          <h2 className="mt-2 text-[36px] font-bold tracking-[-0.05em] text-[#2d2926] max-[1024px]:text-[32px] max-[640px]:text-[26px] max-[640px]:leading-[1.15]">
             {section.sectionTitle}
           </h2>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 gap-12 max-[1024px]:mt-12 max-[1024px]:gap-8 max-[768px]:grid-cols-1 max-[640px]:mt-10 max-[640px]:gap-5">
+        <div className="mt-14 grid grid-cols-2 gap-12 max-[1024px]:mt-12 max-[1024px]:gap-8 max-[768px]:grid-cols-1 max-[768px]:gap-6 max-[640px]:mt-10 max-[640px]:gap-5">
           {cards.map((card) => (
             <article
               key={card.title}
@@ -83,23 +83,23 @@ export function HomeStayExperienceSection({ locale, translations }: HomeStayExpe
 
               <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(12,10,9,0.2)_0%,rgba(12,10,9,0.4)_46%,rgba(12,10,9,0.85)_100%)]" />
 
-              <div className="relative flex min-h-[382px] flex-col justify-end px-10 pb-10 pt-12 text-white max-[1024px]:min-h-[340px] max-[1024px]:px-8 max-[1024px]:pb-8 max-[1024px]:pt-10 max-[640px]:min-h-[300px] max-[640px]:px-6 max-[640px]:pb-6 max-[640px]:pt-8">
+              <div className="relative flex min-h-[382px] flex-col justify-end px-10 pb-10 pt-12 text-white max-[1024px]:min-h-[340px] max-[1024px]:px-8 max-[1024px]:pb-8 max-[1024px]:pt-10 max-[768px]:min-h-[320px] max-[768px]:px-7 max-[768px]:pb-7 max-[768px]:pt-9 max-[640px]:min-h-[300px] max-[640px]:px-6 max-[640px]:pb-6 max-[640px]:pt-8">
                 <p className="text-[10px] font-semibold tracking-[0.24em] text-white/80 max-[640px]:text-[9px]">
                   {card.eyebrow}
                 </p>
 
-                <h3 className="mt-4 text-[24px] font-bold leading-[1] tracking-[-0.04em] max-[640px]:text-[21px]">
+                <h3 className="mt-4 text-[24px] font-bold leading-[1] tracking-[-0.04em] max-[1024px]:text-[22px] max-[640px]:text-[21px]">
                   {card.title}
                 </h3>
 
-                <p className="mt-5 text-[14px] leading-[1.4] text-white/72 max-[640px]:mt-4 max-[640px]:text-[13px]">
+                <p className="mt-5 max-w-[440px] text-[14px] leading-[1.5] text-white/72 max-[1024px]:text-[13px] max-[640px]:mt-4 max-[640px]:text-[13px]">
                   {card.description}
                 </p>
 
                 <div className="mt-6 max-[640px]:mt-5">
                   <Link
                     href={card.href}
-                    className="group/link inline-flex items-center gap-2 text-[12px] font-bold text-white max-[640px]:text-[11px]"
+                    className="group/link inline-flex items-center gap-2 text-[12px] font-bold text-white max-[1024px]:text-[11px]"
                   >
                     <span className="border-b border-white/35 pb-1 transition-colors duration-200 group-hover/link:border-white">
                       {card.ctaLabel}

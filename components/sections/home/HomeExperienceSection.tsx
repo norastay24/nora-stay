@@ -57,7 +57,7 @@ export function HomeExperienceSection({ locale, translations }: HomeExperienceSe
               THE NORA EXPERIENCE
             </p>
 
-            <h2 className="mt-8 whitespace-pre-line text-[48px] font-bold leading-[1.18] tracking-[-0.02em] max-[1024px]:mt-6 max-[1024px]:text-[42px] max-[640px]:mt-5 max-[640px]:text-[30px] max-[640px]:leading-[1.22]">
+            <h2 className="mt-8 whitespace-pre-line text-[48px] font-bold leading-[1.18] tracking-[-0.02em] max-[1024px]:mt-6 max-[1024px]:text-[42px] max-[640px]:mt-5 max-[640px]:text-[26px] max-[640px]:leading-[1.22]">
               {section.title}
             </h2>
 
