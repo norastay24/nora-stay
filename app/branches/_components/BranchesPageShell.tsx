@@ -150,7 +150,7 @@ export function BranchesPageShell({ branches, locale, translations }: BranchesPa
             className={[
               "inline-flex h-[38px] items-center justify-center gap-1.5 rounded-[18px] px-3 text-[12px] font-bold tracking-[-0.04em] transition-colors",
               mobileView === "list"
-                ? "bg-[#9c7b4b] text-white shadow-[0_4px_8px_rgba(156,123,75,0.2)]"
+                ? "bg-[#9c7b4b] text-white shadow-sm"
                 : "bg-transparent text-[#5b6677]",
             ].join(" ")}
           >
@@ -163,7 +163,7 @@ export function BranchesPageShell({ branches, locale, translations }: BranchesPa
             className={[
               "inline-flex h-[38px] items-center justify-center gap-1.5 rounded-[18px] px-3 text-[12px] font-bold tracking-[-0.04em] transition-colors",
               mobileView === "map"
-                ? "bg-[#9c7b4b] text-white shadow-[0_4px_8px_rgba(156,123,75,0.2)]"
+                ? "bg-[#9c7b4b] text-white shadow-sm"
                 : "bg-transparent text-[#5b6677]",
             ].join(" ")}
           >

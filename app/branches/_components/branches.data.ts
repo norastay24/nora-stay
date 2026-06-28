@@ -1,6 +1,7 @@
 import type { AppLocale } from "@/lib/i18n";
 import {
   formatHotelHours,
+  normalizeHotelCategoryKey,
   normalizeHotelRegionLabel,
 } from "@/lib/hotel-branch-localization";
 import { translateKeyedValue } from "@/lib/keyed-translations";
@@ -92,6 +93,25 @@ function resolveThemeColor(branch: AdminHotelBranch) {
   }
 
   return hotelThemeColorMap["Nora Brown"];
+}
+
+function resolveCategoryTags(categoryTags: string[]) {
+  const seen = new Set<string>();
+
+  return categoryTags.filter((tag) => {
+    if (!tag) {
+      return false;
+    }
+
+    const normalizedTag = normalizeHotelCategoryKey(tag);
+
+    if (seen.has(normalizedTag)) {
+      return false;
+    }
+
+    seen.add(normalizedTag);
+    return true;
+  });
 }
 
 export function getBranchDisplayName(branch: BranchItem, locale: AppLocale) {
@@ -188,7 +208,7 @@ export function buildBranchItems(branches: AdminHotelBranch[]): BranchItem[] {
       addressEn: branch.addressEn,
       checkInTime: branch.checkInTime,
       checkOutTime: branch.checkOutTime,
-      tags: branch.categoryTags.filter(Boolean),
+      tags: resolveCategoryTags(branch.categoryTags),
       imageSrc: resolveImageSrc(branch),
       imageSources: resolveImageSources(branch),
       href: resolveHref(branch),
@@ -218,7 +238,7 @@ export function buildPreparingBranchItem(branch: AdminHotelBranch): BranchItem {
     addressEn: branch.addressEn,
     checkInTime: branch.checkInTime,
     checkOutTime: branch.checkOutTime,
-    tags: branch.categoryTags.filter(Boolean),
+    tags: resolveCategoryTags(branch.categoryTags),
     imageSrc: resolveImageSrc(branch),
     imageSources: resolveImageSources(branch),
     href: resolveHref(branch),

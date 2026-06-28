@@ -5,6 +5,7 @@ import type {
   HotelCategoryTag,
   HotelColorTheme,
 } from "@/app/admin/_components/hotels/admin-hotels-shared";
+import { canonicalizeHotelCategoryTag } from "@/lib/hotel-branch-localization";
 import { getSupabaseServiceRoleKey, getSupabaseUrl } from "@/lib/supabase/config";
 
 function createSeedImages(prefix: string): AdminHotelImage[] {
@@ -113,7 +114,13 @@ function transformBranchRecord(record: Record<string, unknown>): AdminHotelBranc
       ? (record.color_themes as HotelColorTheme[])
       : [],
     categoryTags: Array.isArray(record.category_tags)
-      ? (record.category_tags as HotelCategoryTag[])
+      ? Array.from(
+          new Set(
+            (record.category_tags as HotelCategoryTag[]).map((tag) =>
+              canonicalizeHotelCategoryTag(tag) as HotelCategoryTag,
+            ),
+          ),
+        )
       : [],
     description: String(record.description ?? ""),
     descriptionEn: String(record.description_en ?? ""),
@@ -151,7 +158,13 @@ export function serializeHotelBranch(branch: AdminHotelBranch) {
     check_in_time: branch.checkInTime,
     check_out_time: branch.checkOutTime,
     color_themes: branch.colorThemes,
-    category_tags: branch.categoryTags,
+    category_tags: Array.from(
+      new Set(
+        branch.categoryTags.map((tag) =>
+          canonicalizeHotelCategoryTag(tag) as HotelCategoryTag,
+        ),
+      ),
+    ),
     description: branch.description,
     description_en: branch.descriptionEn,
     booking_url: branch.bookingUrl,

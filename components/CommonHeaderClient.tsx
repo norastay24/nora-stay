@@ -136,7 +136,7 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
   return (
     <>
       <header className="sticky top-0 z-50 flex h-20 items-center border-b border-[#f1f1f1] bg-white/90 tracking-tighter backdrop-blur-md">
-        <div className="mx-auto grid h-[92px] w-full max-w-[1200px] grid-cols-[auto_1fr_auto] items-center px-2 max-[1280px]:px-6 max-[1024px]:flex max-[1024px]:h-auto max-[1024px]:flex-wrap max-[1024px]:justify-between max-[1024px]:gap-y-4 max-[1024px]:py-5">
+        <div className="mx-auto grid h-[92px] w-full max-w-[1200px] grid-cols-[auto_1fr_auto] items-center px-2 max-[1280px]:px-6 max-[1024px]:flex max-[1024px]:h-auto max-[1024px]:flex-wrap max-[1024px]:justify-between max-[1024px]:gap-y-4 max-[1024px]:py-6">
           <Link href="/" className="shrink-0" aria-label="Nora Stay">
             <span className="inline-flex items-end gap-[6px] leading-none">
               <Image
@@ -341,16 +341,18 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
             style={{ animation: "mobileMenuPanelIn 260ms ease-out" }}
           >
             <div className="flex items-start justify-between">
-              <span className="text-[24px] font-extrabold tracking-[0.12em] text-white">
-                NORA STAY
-              </span>
+              <Link href="/" className="inline-block">
+                <span className="text-[20px] font-extrabold tracking-[0.12em] text-white">
+                  NORA STAY
+                </span>
+              </Link>
               <button
                 type="button"
                 onClick={handleMobileMenuClose}
-                className="inline-flex h-10 w-10 items-center justify-center text-white"
+                className="inline-flex h-10 w-10 items-center justify-center text-white transition-opacity hover:opacity-70 cursor-pointer"
                 aria-label="Close menu"
               >
-                <X className="h-8 w-8" strokeWidth={2.1} />
+                <X className="h-7 w-7" strokeWidth={2.1} />
               </button>
             </div>
 
@@ -369,7 +371,12 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
                     <Link
                       href={item.href}
                       onClick={handleMobileMenuClose}
-                      className="flex items-center justify-between py-7 max-[640px]:py-6"
+                      className={[
+                        "flex items-center justify-between px-4 py-4 max-[640px]:px-3 max-[640px]:py-4",
+                        isActive
+                          ? "my-2 rounded-[18px] bg-[rgba(255,255,255,0.12)]"
+                          : "",
+                      ].join(" ")}
                     >
                       <span className="flex items-center gap-4 text-[22px] font-bold tracking-[-0.04em] max-[640px]:text-[18px]">
                         <span aria-hidden="true">{index === 0 ? "🏠" : "✨"}</span>
@@ -381,13 +388,13 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
                 );
               })}
 
-              <div className="border-t border-[rgba(255,255,255,0.12)] py-7 max-[640px]:py-6">
+              <div className="border-t border-[rgba(255,255,255,0.12)] py-6 max-[640px]:py-5">
                 <div className="flex items-center gap-4 text-[22px] font-bold tracking-[-0.04em] text-white/70 max-[640px]:text-[18px]">
                   <span aria-hidden="true">🏢</span>
                   <span>{messages.locations}</span>
                 </div>
 
-                <div className="mt-5 space-y-4 pl-[44px] max-[640px]:mt-4 max-[640px]:pl-10">
+                <div className="mt-4 space-y-1 pl-[44px] max-[640px]:mt-2 max-[640px]:pl-8">
                   {locations.map((location) => {
                     const isActive =
                       pathname === location.href || pathname.startsWith(`${location.href}/`);
@@ -401,17 +408,22 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
                             handleMobileMenuClose();
                             setPreparingBranch(location.preparingBranch);
                           }}
-                          className="flex w-full items-center justify-between gap-4 text-left"
+                          className={[
+                            "flex w-full items-center justify-between gap-4 px-4 py-3 text-left max-[640px]:px-3 max-[640px]:py-2",
+                            isActive
+                              ? "my-2 rounded-[18px] bg-[rgba(255,255,255,0.12)]"
+                              : "",
+                          ].join(" ")}
                         >
                           <span
                             className={[
-                              "text-[20px] font-bold tracking-[-0.04em] max-[640px]:text-[16px]",
+                              "block min-w-0 flex-1 text-[20px] font-bold tracking-[-0.04em] max-[640px]:text-[16px]",
                               isActive ? "text-white" : "text-white/55",
                             ].join(" ")}
                           >
                             {location.label}
                           </span>
-                          <span className="inline-flex h-8 items-center rounded-full bg-[#b6881b] px-4 text-[14px] font-bold text-[#ffcf53] max-[640px]:h-7 max-[640px]:px-3 max-[640px]:text-[12px]">
+                          <span className="inline-flex h-8 items-center rounded-full bg-[#b6881b] px-2 text-[14px] font-bold text-[#ffcf53] max-[640px]:h-7 max-[640px]:px-3 max-[640px]:text-[12px]">
                             PREPARING
                           </span>
                         </button>
@@ -423,11 +435,16 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
                         key={location.href}
                         href={location.href}
                         onClick={handleMobileMenuClose}
-                        className="flex items-center justify-between gap-4"
+                        className={[
+                          "flex w-full items-center justify-between gap-4 px-4 py-3 max-[640px]:px-3 max-[640px]:py-2",
+                          isActive
+                            ? "my-2 rounded-[18px] bg-[rgba(255,255,255,0.12)]"
+                            : "",
+                        ].join(" ")}
                       >
                         <span
                           className={[
-                            "text-[20px] font-bold tracking-[-0.04em] max-[640px]:text-[16px]",
+                            "block min-w-0 flex-1 text-[20px] font-bold tracking-[-0.04em] max-[640px]:text-[16px]",
                             isActive ? "text-white" : "text-white/95",
                           ].join(" ")}
                         >
@@ -443,23 +460,34 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
               </div>
 
               <div className="border-t border-b border-[rgba(255,255,255,0.12)]">
-                <Link
-                  href="/branches"
-                  onClick={handleMobileMenuClose}
-                  className="flex items-center justify-between py-7 max-[640px]:py-6"
-                >
-                  <span className="flex items-center gap-4 text-[22px] font-bold tracking-[-0.04em] max-[640px]:text-[18px]">
-                    <Search className="h-7 w-7 max-[640px]:h-6 max-[640px]:w-6" strokeWidth={2.1} />
-                    <span>{messages.findStays}</span>
-                  </span>
-                  <ChevronRight className="h-8 w-8 text-white/70 max-[640px]:h-7 max-[640px]:w-7" />
-                </Link>
+                {(() => {
+                  const isBranchesActive = pathname === "/branches" || pathname.startsWith("/branches/");
+
+                  return (
+                    <Link
+                      href="/branches"
+                      onClick={handleMobileMenuClose}
+                      className={[
+                        "flex items-center justify-between px-4 py-4 max-[640px]:px-3 max-[640px]:py-4",
+                        isBranchesActive
+                          ? "my-2 rounded-[18px] bg-[rgba(255,255,255,0.12)]"
+                          : "",
+                      ].join(" ")}
+                    >
+                      <span className="flex items-center gap-4 text-[22px] font-bold tracking-[-0.04em] max-[640px]:text-[18px]">
+                        <Search className="h-7 w-7 max-[640px]:h-6 max-[640px]:w-6" strokeWidth={2.1} />
+                        <span>{messages.findStays}</span>
+                      </span>
+                      <ChevronRight className="h-8 w-8 text-white/70 max-[640px]:h-7 max-[640px]:w-7" />
+                    </Link>
+                  );
+                })()}
               </div>
             </div>
 
             <div className="mt-auto border-b border-[rgba(255,255,255,0.12)] pb-14 pt-7 max-[640px]:pb-7">
               <div
-                className="inline-flex h-[32px] items-center rounded-full border border-[rgba(255,255,255,0.22)] px-6"
+                className="inline-flex h-[32px] items-center rounded-full border border-[rgba(255,255,255,0.22)] px-4"
                 aria-label={messages.language}
               >
                 {APP_LOCALES.map((option, index) => {
@@ -471,7 +499,7 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
                         type="button"
                         onClick={() => handleLocaleChange(option)}
                         className={[
-                          "text-[14px] font-bold tracking-[0.02em] transition-colors",
+                          "text-[14px] font-bold tracking-[0.02em] transition-colors cursor-pointer",
                           isActive ? "text-white" : "text-white/40 hover:text-white",
                         ].join(" ")}
                       >

@@ -165,24 +165,24 @@ export function HomeInstagramSection({
   };
 
   return (
-    <section className="bg-[#fff] px-4 py-24">
+    <section className="bg-[#fff] px-4 py-24 max-[1024px]:py-18 max-[640px]:px-3 max-[640px]:py-14">
       <div className="mx-auto max-w-[1200px]">
         <div className="text-center">
-          <p className="text-[14px] font-semibold tracking-[0.14em] text-[#8b6f47]">
+          <p className="text-[14px] font-semibold tracking-[0.14em] text-[#8b6f47] max-[640px]:text-[12px] max-[640px]:tracking-[0.12em]">
             INSTAGRAM
           </p>
-          <h2 className={`${poppins.className} mt-4 text-[30px] font-black`}>
+          <h2 className={`${poppins.className} mt-4 text-[30px] font-black max-[640px]:mt-3 max-[640px]:text-[24px]`}>
             {campaignId}
           </h2>
         </div>
 
-        <div className="group relative mt-14">
+        <div className="group relative mt-14 max-[640px]:mt-10">
           <div className="relative">
             <button
               type="button"
               aria-label="Previous"
               onClick={() => moveByStep("prev")}
-              className="absolute left-[-18px] top-1/2 z-10 inline-flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-full border border-[#b98f67] bg-white text-[#8f7b67] shadow-[0_8px_18px_rgba(32,28,24,0.12)] opacity-0 transition-all duration-300 hover:bg-[#f3ece6] group-hover:opacity-100"
+              className="absolute left-[-18px] top-1/2 z-10 inline-flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-full border border-[#b98f67] bg-white text-[#8f7b67] shadow-[0_8px_18px_rgba(32,28,24,0.12)] opacity-0 transition-all duration-300 hover:bg-[#f3ece6] group-hover:opacity-100 max-[640px]:left-2 max-[640px]:h-[40px] max-[640px]:w-[40px] max-[640px]:opacity-100"
             >
               <ArrowLeftIcon />
             </button>
@@ -191,7 +191,7 @@ export function HomeInstagramSection({
               type="button"
               aria-label="Next"
               onClick={() => moveByStep("next")}
-              className="absolute right-[-18px] top-1/2 z-10 inline-flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-full border border-[#b98f67] bg-white text-[#8f7b67] shadow-[0_8px_18px_rgba(32,28,24,0.12)] opacity-0 transition-all duration-300 hover:bg-[#f3ece6] group-hover:opacity-100"
+              className="absolute right-[-18px] top-1/2 z-10 inline-flex h-[50px] w-[50px] -translate-y-1/2 items-center justify-center rounded-full border border-[#b98f67] bg-white text-[#8f7b67] shadow-[0_8px_18px_rgba(32,28,24,0.12)] opacity-0 transition-all duration-300 hover:bg-[#f3ece6] group-hover:opacity-100 max-[640px]:right-2 max-[640px]:h-[40px] max-[640px]:w-[40px] max-[640px]:opacity-100"
             >
               <ArrowRightIcon />
             </button>
@@ -226,12 +226,12 @@ export function HomeInstagramSection({
               className="instagram-swiper"
             >
               {images.map((image, imageIndex) => (
-                <SwiperSlide key={image.id} className="!w-[224px]">
+                <SwiperSlide key={image.id} className="!w-[224px] max-[640px]:!w-[168px]">
                   <Link
                     href={buddyLinkEn}
                     target="_blank"
                     rel="noreferrer"
-                    className="group/item relative block h-[224px] w-[224px] overflow-hidden rounded-[14px]"
+                    className="group/item relative block h-[224px] w-[224px] overflow-hidden rounded-[14px] max-[640px]:h-[168px] max-[640px]:w-[168px]"
                   >
                     <Image
                       src={image.url}
@@ -252,7 +252,7 @@ export function HomeInstagramSection({
 
           <div
             ref={trackRef}
-            className="relative mt-4 h-[6px] w-full rounded-full"
+            className="relative mt-4 h-[6px] w-full rounded-full max-[640px]:mt-3"
             onPointerDown={handleTrackPointerDown}
           >
             <button
@@ -268,12 +268,12 @@ export function HomeInstagramSection({
           </div>
         </div>
 
-        <div className="mt-14 text-center">
+        <div className="mt-14 text-center max-[640px]:mt-10">
           <Link
             href={buddyLinkEn}
             target="_blank"
             rel="noreferrer"
-            className="text-[12px] font-semibold text-[#8b6f47]"
+            className="text-[12px] font-semibold text-[#8b6f47] max-[640px]:text-[11px]"
           >
             {footerEn}
           </Link>

@@ -47,7 +47,7 @@ const regionMessages: Record<string, Record<AppLocale, string>> = {
   busan: { ko: "부산", en: "Busan" },
 };
 
-function normalizeCategoryKey(tag: string) {
+export function normalizeHotelCategoryKey(tag: string) {
   const normalized = tag.trim().toLowerCase();
 
   if (normalized.includes("concept") || normalized.includes("컨셉") || normalized.includes("컨셉")) {
@@ -132,7 +132,7 @@ export function getLocalizedHotelRegionLabel(locale: AppLocale, regionLabel: str
 }
 
 export function getLocalizedHotelCategoryTag(locale: AppLocale, tag: HotelCategoryTag | string) {
-  const key = normalizeCategoryKey(tag);
+  const key = normalizeHotelCategoryKey(tag);
   const message = categoryTagMessages[key];
 
   if (!message) {
@@ -140,6 +140,17 @@ export function getLocalizedHotelCategoryTag(locale: AppLocale, tag: HotelCatego
   }
 
   return message[locale] ?? message.ko;
+}
+
+export function canonicalizeHotelCategoryTag(tag: HotelCategoryTag | string) {
+  const key = normalizeHotelCategoryKey(tag);
+  const message = categoryTagMessages[key];
+
+  if (!message) {
+    return tag.trim();
+  }
+
+  return message.ko;
 }
 
 export function getLocalizedHotelName(

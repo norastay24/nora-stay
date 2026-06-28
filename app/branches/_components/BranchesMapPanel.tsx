@@ -212,6 +212,39 @@ export function BranchesMapPanel({
     map.setZoom(13);
   }, [activeBranch, branches, isScriptReady, onSelectBranch]);
 
+  useEffect(() => {
+    if (!isScriptReady || !mapElementRef.current || !window.naver?.maps || !mapRef.current) {
+      return;
+    }
+
+    const { maps } = window.naver;
+    const map = mapRef.current;
+    const targetElement = mapElementRef.current;
+
+    const handleResize = () => {
+      maps.Event.trigger(map, "resize");
+
+      const resizedMap = mapRef.current as NaverMapLike | null;
+
+      if (!resizedMap) {
+        return;
+      }
+
+      resizedMap.setCenter(new maps.LatLng(activeBranch.coordinates.lat, activeBranch.coordinates.lng));
+    };
+
+    const observer = new ResizeObserver(() => {
+      window.requestAnimationFrame(handleResize);
+    });
+
+    observer.observe(targetElement);
+    window.requestAnimationFrame(handleResize);
+
+    return () => {
+      observer.disconnect();
+    };
+  }, [activeBranch.coordinates.lat, activeBranch.coordinates.lng, isScriptReady]);
+
   function moveToCurrentLocation() {
     if (!navigator.geolocation || !window.naver?.maps || !mapRef.current) {
       return;
