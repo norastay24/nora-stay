@@ -72,6 +72,14 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
     language: t(locale, translations, "footer_language"),
     address: t(locale, translations, "footer_address"),
     inquiry: t(locale, translations, "footer_inquiry"),
+    companyStay: t(locale, translations, "footer_company01", {
+      ko: "(주) 어반노마드 | 대표 문성오 | 사업자등록번호 : 886-81-02339",
+      en: "Urban Nomad Co., Ltd. | CEO Sung O Moon | Business Registration No. : 886-81-02339",
+    }),
+    companyTour: t(locale, translations, "footer_company02", {
+      ko: "(주) 두고홀딩스 | 대표 문원오 | 사업자등록번호 : 363-87-01411",
+      en: "Dugo Holdings Co., Ltd. | CEO Won O Moon | Business Registration No. : 363-87-01411",
+    }),
     admin: t(locale, translations, "footer_admin"),
     copyright: t(locale, translations, "footer_copyright"),
   };
@@ -193,9 +201,9 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
         <div className="mt-6 border-t border-[#272727] pt-8 max-[640px]:pt-6">
           <div className="flex items-end justify-between gap-10 max-[900px]:flex-col max-[900px]:items-start">
             <div className="space-y-3 text-[12px] leading-[1.2] tracking-[-0.03em] text-[#55585d] max-[640px]:text-[11px]">
-              <p>(주) 노라스테이 | 대표 문성호 | 사업자등록번호: 886-81-02339</p>
+              <p>{messages.companyStay}</p>
               <div className="flex items-center gap-3 max-[640px]:flex-wrap max-[640px]:gap-y-2">
-                <p>(주) 노라투어 | 대표 문성호 | 사업자등록번호: 363-87-01411</p>
+                <p>{messages.companyTour}</p>
                 <span className="max-[640px]:hidden">|</span>
                 <Link
                   href="/admin/enter"

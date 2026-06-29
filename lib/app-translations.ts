@@ -21,6 +21,8 @@ export const APP_TRANSLATION_SEED: SeedEntry[] = [
   { key: "footer_language", ko: "언어 선택", en: "Select language", ja: "言語選択", zh: "选择语言" },
   { key: "footer_address", ko: "NORA 본점 : 서울특별시 강남구 논현로5길 40, 1층", en: "NORA HQ : 40, Nonhyeon-ro 5-gil, Gangnam-gu, Seoul, 1F", ja: "NORA 本店 : ソウル特別市 江南区 論峴路5キル 40, 1階", zh: "NORA 总店：首尔特别市江南区论岘路5街40，1层" },
   { key: "footer_inquiry", ko: "제휴 및 촬영 문의 : norastay24@gmail.com", en: "Partnership & shoot inquiries : norastay24@gmail.com", ja: "提携・撮影のお問い合わせ : norastay24@gmail.com", zh: "合作与拍摄咨询：norastay24@gmail.com" },
+  { key: "footer_company01", ko: "(주) 어반노마드 | 대표 문성오 | 사업자등록번호 : 886-81-02339", en: "Urban Nomad Co., Ltd. | CEO Sung O Moon | Business Registration No. : 886-81-02339" },
+  { key: "footer_company02", ko: "(주) 두고홀딩스 | 대표 문원오 | 사업자등록번호 : 363-87-01411", en: "Dugo Holdings Co., Ltd. | CEO Won O Moon | Business Registration No. : 363-87-01411" },
   { key: "footer_admin", ko: "파트너 센터 (관리자)", en: "Partner Center (Admin)", ja: "パートナーセンター (管理者)", zh: "合作伙伴中心（管理员）" },
   { key: "footer_copyright", ko: "© 2026 NORA STAY. All rights reserved.", en: "© 2026 NORA STAY. All rights reserved.", ja: "© 2026 NORA STAY. All rights reserved.", zh: "© 2026 NORA STAY. 版权所有。" },
   { key: "popup_grand_open", ko: "GRAND OPEN", en: "GRAND OPEN", ja: "GRAND OPEN", zh: "GRAND OPEN" },
@@ -76,8 +78,8 @@ export const USED_TRANSLATION_KEYS = APP_TRANSLATION_SEED.map((entry) => entry.k
 export const TRANSLATION_EXPORT_COLUMNS: Array<"key" | "ko" | "en"> = ["key", "ko", "en"];
 
 export function createSeedTranslationEntries(): AdminTranslationEntry[] {
-  return APP_TRANSLATION_SEED.map((entry, index) => ({
-    id: `seed-${index + 1}`,
+  return APP_TRANSLATION_SEED.map((entry) => ({
+    id: `seed-${entry.key}`,
     key: entry.key,
     ko: entry.ko,
     en: entry.en,
