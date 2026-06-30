@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { LockKeyhole } from "lucide-react";
+import { ADMIN_PUBLIC_PATH } from "@/lib/admin-routes";
 
 export function LoginForm() {
   const router = useRouter();
@@ -38,7 +39,7 @@ export function LoginForm() {
         return;
       }
 
-      router.replace("/admin");
+      router.replace(ADMIN_PUBLIC_PATH);
       router.refresh();
     } catch {
       setErrorMessage("로그인 요청 중 오류가 발생했습니다.");

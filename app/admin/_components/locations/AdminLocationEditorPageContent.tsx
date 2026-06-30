@@ -3,6 +3,7 @@ import { AdminHeader } from "@/app/admin/_components/header/AdminHeader";
 import { AdminLocationEditorPanel } from "@/app/admin/_components/locations/AdminLocationEditorPanel";
 import { AdminTopNav } from "@/app/admin/_components/navigation/AdminTopNav";
 import { getAdminSession } from "@/lib/auth/admin-session";
+import { ADMIN_PUBLIC_LOGIN_PATH } from "@/lib/admin-routes";
 
 type AdminLocationEditorPageContentProps = {
   locationSlug: string;
@@ -14,7 +15,7 @@ export async function AdminLocationEditorPageContent({
   const session = await getAdminSession();
 
   if (!session) {
-    redirect("/login");
+    redirect(ADMIN_PUBLIC_LOGIN_PATH);
   }
 
   return (

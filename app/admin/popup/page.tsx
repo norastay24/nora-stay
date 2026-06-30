@@ -3,13 +3,14 @@ import { AdminPopupEditor } from "@/app/admin/_components/popup/AdminPopupEditor
 import { AdminHeader } from "@/app/admin/_components/header/AdminHeader";
 import { AdminTopNav } from "@/app/admin/_components/navigation/AdminTopNav";
 import { getAdminSession } from "@/lib/auth/admin-session";
+import { ADMIN_PUBLIC_LOGIN_PATH } from "@/lib/admin-routes";
 import { fetchAdminPopupSettings } from "@/lib/server/admin-popup-settings";
 
 export default async function AdminPopupPage() {
   const session = await getAdminSession();
 
   if (!session) {
-    redirect("/login");
+    redirect(ADMIN_PUBLIC_LOGIN_PATH);
   }
 
   const settings = await fetchAdminPopupSettings();

@@ -3,13 +3,14 @@ import { AdminHeader } from "@/app/admin/_components/header/AdminHeader";
 import { AdminHotelsEditor } from "@/app/admin/_components/hotels/AdminHotelsEditor";
 import { AdminTopNav } from "@/app/admin/_components/navigation/AdminTopNav";
 import { getAdminSession } from "@/lib/auth/admin-session";
+import { ADMIN_PUBLIC_LOGIN_PATH } from "@/lib/admin-routes";
 import { fetchAdminHotelBranches } from "@/lib/server/admin-hotel-branches";
 
 export default async function AdminHotelsPage() {
   const session = await getAdminSession();
 
   if (!session) {
-    redirect("/login");
+    redirect(ADMIN_PUBLIC_LOGIN_PATH);
   }
 
   const branches = await fetchAdminHotelBranches();

@@ -8,6 +8,11 @@ import {
   LOCALE_COOKIE_NAME,
   type AppLocale,
 } from "@/lib/i18n";
+import {
+  ADMIN_PUBLIC_ENTRY_PATH,
+  isAdminPublicLoginPath,
+  isAdminPublicPath,
+} from "@/lib/admin-routes";
 import { t, type TranslationDictionaryMap } from "@/lib/translation-dictionary";
 
 interface IconProps {
@@ -87,9 +92,8 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
   if (
     pathname === "/branches" ||
     pathname.startsWith("/branches/") ||
-    pathname === "/login" ||
-    pathname === "/admin" ||
-    pathname.startsWith("/admin/")
+    isAdminPublicLoginPath(pathname) ||
+    isAdminPublicPath(pathname)
   ) {
     return null;
   }
@@ -204,13 +208,13 @@ export function CommonFooter({ locale, socialLinks, translations }: CommonFooter
               <p>{messages.companyStay}</p>
               <div className="flex items-center gap-3 max-[640px]:flex-wrap max-[640px]:gap-y-2">
                 <p>{messages.companyTour}</p>
-                <span className="max-[640px]:hidden">|</span>
-                <Link
-                  href="/admin/enter"
+                {/* <span className="max-[640px]:hidden">|</span> */}
+                {/* <Link
+                  href={ADMIN_PUBLIC_ENTRY_PATH}
                   className="inline-flex h-[26px] items-center rounded-full border border-[#404040] bg-white/5 px-3 text-[12px] font-semibold text-[#9a9da2] transition-all hover:border-white/40 hover:bg-white/15 hover:text-white"
                 >
                   {messages.admin}
-                </Link>
+                </Link> */}
               </div>
             </div>
 

@@ -3,6 +3,7 @@
 import { useMemo, useState, useSyncExternalStore } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import type { AdminPopupSettings } from "@/app/admin/_components/popup/admin-popup-shared";
+import { isAdminPublicLoginPath, isAdminPublicPath } from "@/lib/admin-routes";
 import { commonMessages, getLocalizedValue, type AppLocale } from "@/lib/i18n";
 import { t, type TranslationDictionaryMap } from "@/lib/translation-dictionary";
 
@@ -197,7 +198,7 @@ export function GlobalEventPopup({ settings, locale, translations }: GlobalEvent
       return false;
     }
 
-    if (!pathname || pathname === "/login" || pathname === "/admin" || pathname.startsWith("/admin/")) {
+    if (!pathname || isAdminPublicLoginPath(pathname) || isAdminPublicPath(pathname)) {
       return false;
     }
 

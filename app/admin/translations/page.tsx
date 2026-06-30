@@ -3,13 +3,14 @@ import { AdminHeader } from "@/app/admin/_components/header/AdminHeader";
 import { AdminTopNav } from "@/app/admin/_components/navigation/AdminTopNav";
 import { AdminTranslationsEditor } from "@/app/admin/_components/translations/AdminTranslationsEditor";
 import { getAdminSession } from "@/lib/auth/admin-session";
+import { ADMIN_PUBLIC_LOGIN_PATH } from "@/lib/admin-routes";
 import { fetchAdminTranslationEntries } from "@/lib/server/admin-translations";
 
 export default async function AdminTranslationsPage() {
   const session = await getAdminSession();
 
   if (!session) {
-    redirect("/login");
+    redirect(ADMIN_PUBLIC_LOGIN_PATH);
   }
 
   const initialEntries = await fetchAdminTranslationEntries();

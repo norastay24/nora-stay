@@ -9,6 +9,7 @@ import {
   SlidersHorizontal,
   User,
 } from "lucide-react";
+import { buildAdminPublicPath } from "@/lib/admin-routes";
 
 export type AdminNavItem = {
   id: string;
@@ -23,63 +24,72 @@ export const adminNavItems: AdminNavItem[] = [
     id: "main",
     label: "메인 홈 관리",
     icon: SlidersHorizontal,
-    href: "/admin",
-    activeMatch: (pathname) => pathname === "/admin",
+    href: buildAdminPublicPath("/admin"),
+    activeMatch: (pathname) => pathname === buildAdminPublicPath("/admin"),
   },
   {
     id: "hotels",
     label: "호텔 지점 관리",
     icon: Settings,
-    href: "/admin/hotels",
-    activeMatch: (pathname) => pathname === "/admin/hotels" || pathname.startsWith("/admin/hotels/"),
+    href: buildAdminPublicPath("/admin/hotels"),
+    activeMatch: (pathname) =>
+      pathname === buildAdminPublicPath("/admin/hotels") ||
+      pathname.startsWith(`${buildAdminPublicPath("/admin/hotels")}/`),
   },
   {
     id: "experience",
     label: "경험 페이지 관리",
     icon: Compass,
-    href: "/admin/experience",
+    href: buildAdminPublicPath("/admin/experience"),
     activeMatch: (pathname) =>
-      pathname === "/admin/experience" || pathname.startsWith("/admin/experience/"),
+      pathname === buildAdminPublicPath("/admin/experience") ||
+      pathname.startsWith(`${buildAdminPublicPath("/admin/experience")}/`),
   },
   {
     id: "instagram",
     label: "인스타그램 관리",
     icon: PenLine,
-    href: "/admin/instagram",
+    href: buildAdminPublicPath("/admin/instagram"),
     activeMatch: (pathname) =>
-      pathname === "/admin/instagram" || pathname.startsWith("/admin/instagram/"),
+      pathname === buildAdminPublicPath("/admin/instagram") ||
+      pathname.startsWith(`${buildAdminPublicPath("/admin/instagram")}/`),
   },
   {
     id: "locations",
     label: "지점 페이지 관리",
     icon: MapPinned,
-    href: "/admin/locations",
+    href: buildAdminPublicPath("/admin/locations"),
     activeMatch: (pathname) =>
-      pathname === "/admin/garosugil" ||
-      pathname.startsWith("/admin/garosugil/") ||
-      pathname === "/admin/locations" ||
-      pathname.startsWith("/admin/locations/"),
+      pathname === buildAdminPublicPath("/admin/garosugil") ||
+      pathname.startsWith(`${buildAdminPublicPath("/admin/garosugil")}/`) ||
+      pathname === buildAdminPublicPath("/admin/locations") ||
+      pathname.startsWith(`${buildAdminPublicPath("/admin/locations")}/`),
   },
   {
     id: "popup",
     label: "팝업창 관리",
     icon: MessageSquare,
-    href: "/admin/popup",
-    activeMatch: (pathname) => pathname === "/admin/popup" || pathname.startsWith("/admin/popup/"),
+    href: buildAdminPublicPath("/admin/popup"),
+    activeMatch: (pathname) =>
+      pathname === buildAdminPublicPath("/admin/popup") ||
+      pathname.startsWith(`${buildAdminPublicPath("/admin/popup")}/`),
   },
   {
     id: "translations",
     label: "번역 사전 관리",
     icon: Languages,
-    href: "/admin/translations",
+    href: buildAdminPublicPath("/admin/translations"),
     activeMatch: (pathname) =>
-      pathname === "/admin/translations" || pathname.startsWith("/admin/translations/"),
+      pathname === buildAdminPublicPath("/admin/translations") ||
+      pathname.startsWith(`${buildAdminPublicPath("/admin/translations")}/`),
   },
   {
     id: "account",
     label: "계정 설정",
     icon: User,
-    href: "/admin/account",
-    activeMatch: (pathname) => pathname === "/admin/account" || pathname.startsWith("/admin/account/"),
+    href: buildAdminPublicPath("/admin/account"),
+    activeMatch: (pathname) =>
+      pathname === buildAdminPublicPath("/admin/account") ||
+      pathname.startsWith(`${buildAdminPublicPath("/admin/account")}/`),
   },
 ];

@@ -4,6 +4,7 @@ import { Home } from "lucide-react";
 import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/auth/admin-session";
+import { ADMIN_PUBLIC_PATH } from "@/lib/admin-routes";
 import { LoginForm } from "@/app/login/_components/LoginForm";
 
 export const metadata: Metadata = {
@@ -21,7 +22,7 @@ export default async function LoginPage() {
   const session = await getAdminSession();
 
   if (session) {
-    redirect("/admin");
+    redirect(ADMIN_PUBLIC_PATH);
   }
 
   return (

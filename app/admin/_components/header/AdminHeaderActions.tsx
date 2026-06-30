@@ -1,7 +1,9 @@
 "use client";
 
+import Link from "next/link";
 import { LogOut, Save } from "lucide-react";
 import { ADMIN_SAVE_REQUEST_EVENT } from "@/app/admin/_components/save/admin-save-events";
+import { buildAdminPublicPath } from "@/lib/admin-routes";
 
 export function AdminHeaderActions() {
   function handleSaveClick() {
@@ -23,14 +25,14 @@ export function AdminHeaderActions() {
         <span className="whitespace-nowrap">변경 사항 저장</span>
       </button>
 
-      <a
-        href="/admin/logout"
+      <Link
+        href={buildAdminPublicPath("/admin/logout")}
         className="rounded-full p-2 text-gray-400 transition-colors duration-200 hover:bg-gray-50 hover:text-red-500"
         title="로그아웃"
         aria-label="로그아웃"
       >
         <LogOut className="h-[18px] w-[18px]" strokeWidth={2.2} />
-      </a>
+      </Link>
     </div>
   );
 }

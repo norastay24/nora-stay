@@ -3,12 +3,13 @@ import { AdminAccountSettingsForm } from "@/app/admin/_components/account/AdminA
 import { AdminHeader } from "@/app/admin/_components/header/AdminHeader";
 import { AdminTopNav } from "@/app/admin/_components/navigation/AdminTopNav";
 import { getAdminSession } from "@/lib/auth/admin-session";
+import { ADMIN_PUBLIC_LOGIN_PATH } from "@/lib/admin-routes";
 
 export default async function AdminAccountPage() {
   const session = await getAdminSession();
 
   if (!session) {
-    redirect("/login");
+    redirect(ADMIN_PUBLIC_LOGIN_PATH);
   }
 
   return (

@@ -16,6 +16,7 @@ import {
   LOCALE_COOKIE_NAME,
   type AppLocale,
 } from "@/lib/i18n";
+import { isAdminPublicLoginPath, isAdminPublicPath } from "@/lib/admin-routes";
 import { getLocalizedHotelName } from "@/lib/hotel-branch-localization";
 import { t, translateDictionaryText, type TranslationDictionaryMap } from "@/lib/translation-dictionary";
 
@@ -74,8 +75,7 @@ export function CommonHeaderClient({ branches, locale, translations }: CommonHea
     [branches, locale, translations],
   );
   const isLocationActive = pathname.startsWith("/locations");
-  const isAdminRoute =
-    pathname === "/login" || pathname === "/admin" || pathname.startsWith("/admin/");
+  const isAdminRoute = isAdminPublicLoginPath(pathname) || isAdminPublicPath(pathname);
   const messages = {
     brandStory: t(locale, translations, "header_brand_story"),
     experience: t(locale, translations, "header_experience"),

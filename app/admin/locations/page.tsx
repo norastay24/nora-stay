@@ -4,6 +4,7 @@ import { AdminHeader } from "@/app/admin/_components/header/AdminHeader";
 import { AdminLocationEditorPanel } from "@/app/admin/_components/locations/AdminLocationEditorPanel";
 import { AdminTopNav } from "@/app/admin/_components/navigation/AdminTopNav";
 import { getAdminSession } from "@/lib/auth/admin-session";
+import { ADMIN_PUBLIC_LOGIN_PATH, buildAdminPublicPath } from "@/lib/admin-routes";
 import { fetchAdminHotelBranches } from "@/lib/server/admin-hotel-branches";
 
 type AdminLocationsPageProps = {
@@ -18,7 +19,7 @@ export default async function AdminLocationsPage({
   const session = await getAdminSession();
 
   if (!session) {
-    redirect("/login");
+    redirect(ADMIN_PUBLIC_LOGIN_PATH);
   }
 
   const resolvedSearchParams = await searchParams;
@@ -31,7 +32,7 @@ export default async function AdminLocationsPage({
   const activeBranch = locationBranches.find((branch) => branch.slug === selectedSlug);
 
   if (!activeBranch && locationBranches.length > 0) {
-    redirect(`/admin/locations?slug=${fallbackSlug}`);
+    redirect(`${buildAdminPublicPath("/admin/locations")}?slug=${fallbackSlug}`);
   }
 
   return (
@@ -53,7 +54,7 @@ export default async function AdminLocationsPage({
                 return (
                   <Link
                     key={branch.slug}
-                    href={`/admin/locations?slug=${branch.slug}`}
+                    href={`${buildAdminPublicPath("/admin/locations")}?slug=${branch.slug}`}
                     className={[
                       "min-w-fit rounded-full border px-4 py-2 text-[12px] font-bold tracking-[-0.03em] transition-all duration-200",
                       isActive

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { buildAdminPublicPath } from "@/lib/admin-routes";
 
 type AdminOverviewCardProps = {
   email: string;
@@ -31,7 +32,7 @@ export function AdminOverviewCard({ email }: AdminOverviewCardProps) {
           <p className="text-[14px] font-bold text-[#8f7b63]">빠른 작업</p>
           <div className="mt-4 flex flex-wrap gap-3">
             <Link
-              href="/admin/hotels"
+              href={buildAdminPublicPath("/admin/hotels")}
               className="inline-flex h-[44px] items-center rounded-full bg-[#9c7b4b] px-6 text-[14px] font-bold text-white transition-colors duration-200 hover:bg-[#87683f]"
             >
               호텔 지점 관리 열기
