@@ -1,9 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Home } from "lucide-react";
+import type { Metadata } from "next";
 import { redirect } from "next/navigation";
 import { getAdminSession } from "@/lib/auth/admin-session";
 import { LoginForm } from "@/app/login/_components/LoginForm";
+
+export const metadata: Metadata = {
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: {
+      index: false,
+      follow: false,
+    },
+  },
+};
 
 export default async function LoginPage() {
   const session = await getAdminSession();

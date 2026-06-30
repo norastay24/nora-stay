@@ -25,12 +25,12 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.norastay.com"),
 
   title: {
-    default: "NORA STAY | 일상의 경계를 넘은, 조용한 휴식",
+    default: "NORA STAY | 노라 스테이 - 일상의 경계를 넘은, 조용한 휴식",
     template: "%s | NORA STAY",
   },
 
   description:
-    "",
+    "NORA STAY 노라 스테이는 프라이빗한 공간에서 편안한 휴식을 제공하는 프리미엄 스테이 브랜드입니다. 여행, 워케이션, 가족 모임, 기업 행사까지 머무는 모든 순간이 특별한 경험이 되도록 공간을 디자인합니다.",
 
   keywords: [
     "노라스테이",
@@ -49,9 +49,9 @@ export const metadata: Metadata = {
   },
 
   openGraph: {
-    title: "NORA STAY | 일상의 경계를 넘은, 조용한 휴식",
+    title: "NORA STAY | 노라 스테이 - 일상의 경계를 넘은, 조용한 휴식",
     description:
-      "NORA STAY는 프라이빗한 공간에서 편안한 휴식을 제공하는 프리미엄 스테이 브랜드입니다. 여행, 워케이션, 가족 모임, 기업 행사까지 머무는 모든 순간이 특별한 경험이 되도록 공간을 디자인합니다.",
+      "NORA STAY 노라 스테이는 프라이빗한 공간에서 편안한 휴식을 제공하는 프리미엄 스테이 브랜드입니다. 여행, 워케이션, 가족 모임, 기업 행사까지 머무는 모든 순간이 특별한 경험이 되도록 공간을 디자인합니다.",
     url: "https://www.norastay.com",
     siteName: "NORA STAY",
     locale: "ko_KR",
@@ -68,9 +68,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: "summary_large_image",
-    title: "NORA STAY | 일상의 경계를 넘은, 조용한 휴식",
+    title: "NORA STAY | 노라 스테이 - 일상의 경계를 넘은, 조용한 휴식",
     description:
-      "NORA STAY는 프라이빗한 공간에서 편안한 휴식을 제공하는 프리미엄 스테이 브랜드입니다. 여행, 워케이션, 가족 모임, 기업 행사까지 머무는 모든 순간이 특별한 경험이 되도록 공간을 디자인합니다.",
+      "NORA STAY 노라 스테이는 프라이빗한 공간에서 편안한 휴식을 제공하는 프리미엄 스테이 브랜드입니다. 여행, 워케이션, 가족 모임, 기업 행사까지 머무는 모든 순간이 특별한 경험이 되도록 공간을 디자인합니다.",
     images: ["/images/seo.jpg"],
   },
 
